@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="MIPI_Byte_to_Pixel_Converter_Top" Register="145" Alu="13" Lut="112" Bsram="1" T_Register="145(145)" T_Alu="13(13)" T_Lut="112(112)" T_Bsram="1(1)"/>

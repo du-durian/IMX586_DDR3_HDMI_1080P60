@@ -1,0 +1,2610 @@
+//Copyright (C)2014-2026 Gowin Semiconductor Corporation.
+//All rights reserved.
+//File Title: Post-PnR Verilog Simulation Model file
+//Tool Version: V1.9.12.03 (64-bit)
+//Created Time: Tue Sep 22 10:16:33 2026
+
+`timescale 100 ps/100 ps
+module MIPI_CSI2_SOFT(
+	I_RSTN,
+	I_BYTE_CLK,
+	I_REF_DT,
+	I_READY,
+	I_DATA0,
+	O_SP_EN,
+	O_LP_EN,
+	O_LP_AV_EN,
+	O_ECC_OK,
+	O_ECC,
+	O_WC,
+	O_VC,
+	O_DT,
+	O_PAYLOAD,
+	O_PAYLOAD_DV
+);
+input I_RSTN;
+input I_BYTE_CLK;
+input [5:0] I_REF_DT;
+input I_READY;
+input [7:0] I_DATA0;
+output O_SP_EN;
+output O_LP_EN;
+output O_LP_AV_EN;
+output O_ECC_OK;
+output [7:0] O_ECC;
+output [15:0] O_WC;
+output [1:0] O_VC;
+output [5:0] O_DT;
+output [7:0] O_PAYLOAD;
+output [0:0] O_PAYLOAD_DV;
+wire GND;
+wire I_BYTE_CLK;
+wire [7:0] I_DATA0;
+wire I_READY;
+wire [5:0] I_REF_DT;
+wire I_RSTN;
+wire [5:0] O_DT;
+wire [7:0] O_ECC;
+wire O_ECC_OK;
+wire O_LP_AV_EN;
+wire O_LP_EN;
+wire [7:0] O_PAYLOAD;
+wire [0:0] O_PAYLOAD_DV;
+wire O_SP_EN;
+wire [1:0] O_VC;
+wire [15:0] O_WC;
+wire VCC;
+wire \u_dsi_csi2/n28_4 ;
+wire \u_dsi_csi2/n663_4 ;
+wire \u_dsi_csi2/n715_4 ;
+wire \u_dsi_csi2/n716_4 ;
+wire \u_dsi_csi2/n717_4 ;
+wire \u_dsi_csi2/n718_4 ;
+wire \u_dsi_csi2/n719_4 ;
+wire \u_dsi_csi2/n720_4 ;
+wire \u_dsi_csi2/n721_4 ;
+wire \u_dsi_csi2/n722_4 ;
+wire \u_dsi_csi2/n843_4 ;
+wire \u_dsi_csi2/n993_3 ;
+wire \u_dsi_csi2/rPayload_7_6 ;
+wire \u_dsi_csi2/rSynced_8 ;
+wire \u_dsi_csi2/n436_7 ;
+wire \u_dsi_csi2/n435_8 ;
+wire \u_dsi_csi2/n629_6 ;
+wire \u_dsi_csi2/n628_6 ;
+wire \u_dsi_csi2/n545_6 ;
+wire \u_dsi_csi2/n544_6 ;
+wire \u_dsi_csi2/n543_6 ;
+wire \u_dsi_csi2/n542_6 ;
+wire \u_dsi_csi2/n541_6 ;
+wire \u_dsi_csi2/n540_6 ;
+wire \u_dsi_csi2/n539_6 ;
+wire \u_dsi_csi2/n538_6 ;
+wire \u_dsi_csi2/n537_6 ;
+wire \u_dsi_csi2/n536_6 ;
+wire \u_dsi_csi2/n535_6 ;
+wire \u_dsi_csi2/n534_6 ;
+wire \u_dsi_csi2/n533_6 ;
+wire \u_dsi_csi2/n532_6 ;
+wire \u_dsi_csi2/n531_6 ;
+wire \u_dsi_csi2/n530_6 ;
+wire \u_dsi_csi2/n655_6 ;
+wire \u_dsi_csi2/n691_6 ;
+wire \u_dsi_csi2/n799_6 ;
+wire \u_dsi_csi2/n437_8 ;
+wire \u_dsi_csi2/n731_8 ;
+wire \u_dsi_csi2/n738_9 ;
+wire \u_dsi_csi2/n732_8 ;
+wire \u_dsi_csi2/n733_8 ;
+wire \u_dsi_csi2/n734_8 ;
+wire \u_dsi_csi2/n735_8 ;
+wire \u_dsi_csi2/n736_8 ;
+wire \u_dsi_csi2/n737_8 ;
+wire \u_dsi_csi2/n738_8 ;
+wire \u_dsi_csi2/n426_16 ;
+wire \u_dsi_csi2/n425_11 ;
+wire \u_dsi_csi2/n663_5 ;
+wire \u_dsi_csi2/n663_6 ;
+wire \u_dsi_csi2/n715_5 ;
+wire \u_dsi_csi2/n843_5 ;
+wire \u_dsi_csi2/n843_6 ;
+wire \u_dsi_csi2/n993_4 ;
+wire \u_dsi_csi2/n993_5 ;
+wire \u_dsi_csi2/n993_6 ;
+wire \u_dsi_csi2/n993_7 ;
+wire \u_dsi_csi2/rSynced_9 ;
+wire \u_dsi_csi2/rSynced_10 ;
+wire \u_dsi_csi2/n436_8 ;
+wire \u_dsi_csi2/n435_9 ;
+wire \u_dsi_csi2/n629_7 ;
+wire \u_dsi_csi2/n628_7 ;
+wire \u_dsi_csi2/n628_8 ;
+wire \u_dsi_csi2/n545_7 ;
+wire \u_dsi_csi2/n543_7 ;
+wire \u_dsi_csi2/n543_8 ;
+wire \u_dsi_csi2/n543_9 ;
+wire \u_dsi_csi2/n542_7 ;
+wire \u_dsi_csi2/n541_7 ;
+wire \u_dsi_csi2/n540_8 ;
+wire \u_dsi_csi2/n539_8 ;
+wire \u_dsi_csi2/n538_7 ;
+wire \u_dsi_csi2/n537_8 ;
+wire \u_dsi_csi2/n536_7 ;
+wire \u_dsi_csi2/n536_8 ;
+wire \u_dsi_csi2/n535_7 ;
+wire \u_dsi_csi2/n534_8 ;
+wire \u_dsi_csi2/n533_7 ;
+wire \u_dsi_csi2/n532_7 ;
+wire \u_dsi_csi2/n531_7 ;
+wire \u_dsi_csi2/n530_7 ;
+wire \u_dsi_csi2/n655_7 ;
+wire \u_dsi_csi2/n691_7 ;
+wire \u_dsi_csi2/n663_7 ;
+wire \u_dsi_csi2/n663_8 ;
+wire \u_dsi_csi2/n663_9 ;
+wire \u_dsi_csi2/n663_10 ;
+wire \u_dsi_csi2/n843_7 ;
+wire \u_dsi_csi2/n843_8 ;
+wire \u_dsi_csi2/n843_9 ;
+wire \u_dsi_csi2/n993_8 ;
+wire \u_dsi_csi2/n993_9 ;
+wire \u_dsi_csi2/n993_10 ;
+wire \u_dsi_csi2/n993_11 ;
+wire \u_dsi_csi2/n993_12 ;
+wire \u_dsi_csi2/n993_13 ;
+wire \u_dsi_csi2/n993_14 ;
+wire \u_dsi_csi2/n993_15 ;
+wire \u_dsi_csi2/n993_16 ;
+wire \u_dsi_csi2/n993_17 ;
+wire \u_dsi_csi2/n993_18 ;
+wire \u_dsi_csi2/n545_8 ;
+wire \u_dsi_csi2/n541_8 ;
+wire \u_dsi_csi2/n539_9 ;
+wire \u_dsi_csi2/n538_8 ;
+wire \u_dsi_csi2/n535_8 ;
+wire \u_dsi_csi2/n533_8 ;
+wire \u_dsi_csi2/n532_8 ;
+wire \u_dsi_csi2/n531_8 ;
+wire \u_dsi_csi2/n843_10 ;
+wire \u_dsi_csi2/n843_11 ;
+wire \u_dsi_csi2/n993_19 ;
+wire \u_dsi_csi2/n993_20 ;
+wire \u_dsi_csi2/n993_21 ;
+wire \u_dsi_csi2/n993_22 ;
+wire \u_dsi_csi2/n993_23 ;
+wire \u_dsi_csi2/n993_24 ;
+wire \u_dsi_csi2/n993_25 ;
+wire \u_dsi_csi2/n993_26 ;
+wire \u_dsi_csi2/n531_9 ;
+wire \u_dsi_csi2/n542_10 ;
+wire \u_dsi_csi2/n534_10 ;
+wire \u_dsi_csi2/n537_10 ;
+wire \u_dsi_csi2/n630_9 ;
+wire \u_dsi_csi2/n785_8 ;
+wire \u_dsi_csi2/n773_8 ;
+wire \u_dsi_csi2/n731_13 ;
+wire \u_dsi_csi2/n539_11 ;
+wire \u_dsi_csi2/n540_11 ;
+wire \u_dsi_csi2/n540_13 ;
+wire \u_dsi_csi2/n630_11 ;
+wire \u_dsi_csi2/rHSel_2_10 ;
+wire \u_dsi_csi2/n467_13 ;
+wire \u_dsi_csi2/rDSel_2_14 ;
+wire \u_dsi_csi2/n468_9 ;
+wire \u_dsi_csi2/n469_9 ;
+wire \u_dsi_csi2/rDataEn ;
+wire \u_dsi_csi2/rLpPeriod ;
+wire \u_dsi_csi2/rEoLp ;
+wire \u_dsi_csi2/rSpEn ;
+wire \u_dsi_csi2/rLpEn ;
+wire \u_dsi_csi2/rSynced ;
+wire \u_dsi_csi2/n427_5 ;
+wire \u_dsi_csi2/n427_6 ;
+wire \u_dsi_csi2/n426_5 ;
+wire \u_dsi_csi2/n426_6 ;
+wire \u_dsi_csi2/n425_5 ;
+wire \u_dsi_csi2/n425_2_COUT ;
+wire \u_dsi_csi2/n791_1_SUM ;
+wire \u_dsi_csi2/n791_3 ;
+wire \u_dsi_csi2/n792_1_SUM ;
+wire \u_dsi_csi2/n792_3 ;
+wire \u_dsi_csi2/n793_1_SUM ;
+wire \u_dsi_csi2/n793_3 ;
+wire \u_dsi_csi2/n794_1_SUM ;
+wire \u_dsi_csi2/n794_3 ;
+wire \u_dsi_csi2/n795_1_SUM ;
+wire \u_dsi_csi2/n795_3 ;
+wire \u_dsi_csi2/n796_1_SUM ;
+wire \u_dsi_csi2/n796_3 ;
+wire \u_dsi_csi2/n731_6 ;
+wire \u_dsi_csi2/n732_6 ;
+wire \u_dsi_csi2/n733_6 ;
+wire \u_dsi_csi2/n734_6 ;
+wire \u_dsi_csi2/n735_6 ;
+wire \u_dsi_csi2/n736_6 ;
+wire \u_dsi_csi2/n737_6 ;
+wire \u_dsi_csi2/n738_6 ;
+wire \u_dsi_csi2/n478_6 ;
+wire \u_dsi_csi2/n31_5 ;
+wire [7:0] \u_dsi_csi2/rData ;
+wire [31:8] \u_dsi_csi2/rDataReg ;
+wire [15:0] \u_dsi_csi2/rWcCnt ;
+wire [2:0] \u_dsi_csi2/rWcCntP ;
+wire [0:0] \u_dsi_csi2/rPayloadBv ;
+wire [7:0] \u_dsi_csi2/rPayload ;
+wire [2:0] \u_dsi_csi2/rHSel ;
+wire [2:0] \u_dsi_csi2/rDSel ;
+wire [31:0] \u_dsi_csi2/rHeader ;
+VCC VCC_cZ (
+  .V(VCC)
+);
+GND GND_cZ (
+  .G(GND)
+);
+GSR GSR (
+	.GSRI(VCC)
+);
+LUT2 \u_dsi_csi2/n28_s0  (
+	.I0(I_READY),
+	.I1(\u_dsi_csi2/rSynced ),
+	.F(\u_dsi_csi2/n28_4 )
+);
+defparam \u_dsi_csi2/n28_s0 .INIT=4'h8;
+LUT4 \u_dsi_csi2/n663_s1  (
+	.I0(\u_dsi_csi2/rEoLp ),
+	.I1(\u_dsi_csi2/n663_5 ),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/n663_6 ),
+	.F(\u_dsi_csi2/n663_4 )
+);
+defparam \u_dsi_csi2/n663_s1 .INIT=16'h1000;
+LUT3 \u_dsi_csi2/n731_s10  (
+	.I0(\u_dsi_csi2/rDataReg [31]),
+	.I1(\u_dsi_csi2/rData [7]),
+	.I2(\u_dsi_csi2/n715_5 ),
+	.F(\u_dsi_csi2/n715_4 )
+);
+defparam \u_dsi_csi2/n731_s10 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n732_s7  (
+	.I0(\u_dsi_csi2/rDataReg [30]),
+	.I1(\u_dsi_csi2/rData [6]),
+	.I2(\u_dsi_csi2/n715_5 ),
+	.F(\u_dsi_csi2/n716_4 )
+);
+defparam \u_dsi_csi2/n732_s7 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n733_s7  (
+	.I0(\u_dsi_csi2/rDataReg [29]),
+	.I1(\u_dsi_csi2/rData [5]),
+	.I2(\u_dsi_csi2/n715_5 ),
+	.F(\u_dsi_csi2/n717_4 )
+);
+defparam \u_dsi_csi2/n733_s7 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n734_s7  (
+	.I0(\u_dsi_csi2/rDataReg [28]),
+	.I1(\u_dsi_csi2/rData [4]),
+	.I2(\u_dsi_csi2/n715_5 ),
+	.F(\u_dsi_csi2/n718_4 )
+);
+defparam \u_dsi_csi2/n734_s7 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n735_s7  (
+	.I0(\u_dsi_csi2/rDataReg [27]),
+	.I1(\u_dsi_csi2/rData [3]),
+	.I2(\u_dsi_csi2/n715_5 ),
+	.F(\u_dsi_csi2/n719_4 )
+);
+defparam \u_dsi_csi2/n735_s7 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n736_s7  (
+	.I0(\u_dsi_csi2/rDataReg [26]),
+	.I1(\u_dsi_csi2/rData [2]),
+	.I2(\u_dsi_csi2/n715_5 ),
+	.F(\u_dsi_csi2/n720_4 )
+);
+defparam \u_dsi_csi2/n736_s7 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n737_s7  (
+	.I0(\u_dsi_csi2/rDataReg [25]),
+	.I1(\u_dsi_csi2/rData [1]),
+	.I2(\u_dsi_csi2/n715_5 ),
+	.F(\u_dsi_csi2/n721_4 )
+);
+defparam \u_dsi_csi2/n737_s7 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n738_s7  (
+	.I0(\u_dsi_csi2/rDataReg [24]),
+	.I1(\u_dsi_csi2/rData [0]),
+	.I2(\u_dsi_csi2/n715_5 ),
+	.F(\u_dsi_csi2/n722_4 )
+);
+defparam \u_dsi_csi2/n738_s7 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n843_s1  (
+	.I0(\u_dsi_csi2/n843_5 ),
+	.I1(\u_dsi_csi2/n843_6 ),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/n843_4 )
+);
+defparam \u_dsi_csi2/n843_s1 .INIT=8'h0E;
+LUT4 \u_dsi_csi2/n993_s0  (
+	.I0(\u_dsi_csi2/n993_4 ),
+	.I1(\u_dsi_csi2/n993_5 ),
+	.I2(\u_dsi_csi2/n993_6 ),
+	.I3(\u_dsi_csi2/n993_7 ),
+	.F(\u_dsi_csi2/n993_3 )
+);
+defparam \u_dsi_csi2/n993_s0 .INIT=16'h4000;
+LUT2 \u_dsi_csi2/rPayload_7_s2  (
+	.I0(\u_dsi_csi2/rDSel [2]),
+	.I1(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/rPayload_7_6 )
+);
+defparam \u_dsi_csi2/rPayload_7_s2 .INIT=4'h4;
+LUT4 \u_dsi_csi2/rSynced_s3  (
+	.I0(I_DATA0[0]),
+	.I1(\u_dsi_csi2/rSynced_9 ),
+	.I2(\u_dsi_csi2/rSynced_10 ),
+	.I3(I_READY),
+	.F(\u_dsi_csi2/rSynced_8 )
+);
+defparam \u_dsi_csi2/rSynced_s3 .INIT=16'h40FF;
+LUT4 \u_dsi_csi2/n436_s2  (
+	.I0(\u_dsi_csi2/n426_5 ),
+	.I1(\u_dsi_csi2/n436_8 ),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n436_7 )
+);
+defparam \u_dsi_csi2/n436_s2 .INIT=16'hAC00;
+LUT4 \u_dsi_csi2/n435_s3  (
+	.I0(\u_dsi_csi2/n425_5 ),
+	.I1(\u_dsi_csi2/n435_9 ),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n435_8 )
+);
+defparam \u_dsi_csi2/n435_s3 .INIT=16'hA300;
+LUT4 \u_dsi_csi2/n629_s1  (
+	.I0(\u_dsi_csi2/n426_16 ),
+	.I1(\u_dsi_csi2/rLpPeriod ),
+	.I2(\u_dsi_csi2/n629_7 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n629_6 )
+);
+defparam \u_dsi_csi2/n629_s1 .INIT=16'hF800;
+LUT4 \u_dsi_csi2/n628_s1  (
+	.I0(\u_dsi_csi2/n628_7 ),
+	.I1(\u_dsi_csi2/n628_8 ),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n628_6 )
+);
+defparam \u_dsi_csi2/n628_s1 .INIT=16'h5C00;
+LUT4 \u_dsi_csi2/n545_s1  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rDSel_2_14 ),
+	.I2(\u_dsi_csi2/rWcCnt [0]),
+	.I3(\u_dsi_csi2/n630_9 ),
+	.F(\u_dsi_csi2/n545_6 )
+);
+defparam \u_dsi_csi2/n545_s1 .INIT=16'hFF01;
+LUT4 \u_dsi_csi2/n544_s1  (
+	.I0(\u_dsi_csi2/n663_5 ),
+	.I1(\u_dsi_csi2/rLpPeriod ),
+	.I2(\u_dsi_csi2/n629_7 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n544_6 )
+);
+defparam \u_dsi_csi2/n544_s1 .INIT=16'h0B00;
+LUT4 \u_dsi_csi2/n543_s1  (
+	.I0(\u_dsi_csi2/rDataReg [18]),
+	.I1(\u_dsi_csi2/n543_7 ),
+	.I2(\u_dsi_csi2/n543_8 ),
+	.I3(\u_dsi_csi2/n543_9 ),
+	.F(\u_dsi_csi2/n543_6 )
+);
+defparam \u_dsi_csi2/n543_s1 .INIT=16'hFFB0;
+LUT4 \u_dsi_csi2/n542_s1  (
+	.I0(\u_dsi_csi2/rDataReg [19]),
+	.I1(\u_dsi_csi2/n543_7 ),
+	.I2(\u_dsi_csi2/n543_8 ),
+	.I3(\u_dsi_csi2/n542_7 ),
+	.F(\u_dsi_csi2/n542_6 )
+);
+defparam \u_dsi_csi2/n542_s1 .INIT=16'hFFB0;
+LUT4 \u_dsi_csi2/n541_s1  (
+	.I0(\u_dsi_csi2/rDataReg [20]),
+	.I1(\u_dsi_csi2/n543_7 ),
+	.I2(\u_dsi_csi2/n543_8 ),
+	.I3(\u_dsi_csi2/n541_7 ),
+	.F(\u_dsi_csi2/n541_6 )
+);
+defparam \u_dsi_csi2/n541_s1 .INIT=16'hFFB0;
+LUT4 \u_dsi_csi2/n540_s1  (
+	.I0(\u_dsi_csi2/n540_13 ),
+	.I1(\u_dsi_csi2/n540_8 ),
+	.I2(\u_dsi_csi2/n540_11 ),
+	.I3(\u_dsi_csi2/n543_8 ),
+	.F(\u_dsi_csi2/n540_6 )
+);
+defparam \u_dsi_csi2/n540_s1 .INIT=16'h2F22;
+LUT4 \u_dsi_csi2/n539_s1  (
+	.I0(\u_dsi_csi2/n539_11 ),
+	.I1(\u_dsi_csi2/rDataReg [22]),
+	.I2(\u_dsi_csi2/n539_8 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n539_6 )
+);
+defparam \u_dsi_csi2/n539_s1 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n538_s1  (
+	.I0(\u_dsi_csi2/n539_11 ),
+	.I1(\u_dsi_csi2/rDataReg [23]),
+	.I2(\u_dsi_csi2/n538_7 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n538_6 )
+);
+defparam \u_dsi_csi2/n538_s1 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n537_s1  (
+	.I0(\u_dsi_csi2/n537_10 ),
+	.I1(\u_dsi_csi2/rWcCnt [8]),
+	.I2(\u_dsi_csi2/n537_8 ),
+	.I3(\u_dsi_csi2/n540_13 ),
+	.F(\u_dsi_csi2/n537_6 )
+);
+defparam \u_dsi_csi2/n537_s1 .INIT=16'hBEAA;
+LUT4 \u_dsi_csi2/n536_s1  (
+	.I0(\u_dsi_csi2/n536_7 ),
+	.I1(\u_dsi_csi2/rLpPeriod ),
+	.I2(\u_dsi_csi2/n536_8 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n536_6 )
+);
+defparam \u_dsi_csi2/n536_s1 .INIT=16'h0700;
+LUT4 \u_dsi_csi2/n535_s1  (
+	.I0(\u_dsi_csi2/n539_11 ),
+	.I1(\u_dsi_csi2/rDataReg [26]),
+	.I2(\u_dsi_csi2/n535_7 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n535_6 )
+);
+defparam \u_dsi_csi2/n535_s1 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n534_s1  (
+	.I0(\u_dsi_csi2/n534_10 ),
+	.I1(\u_dsi_csi2/rWcCnt [11]),
+	.I2(\u_dsi_csi2/n534_8 ),
+	.I3(\u_dsi_csi2/n540_13 ),
+	.F(\u_dsi_csi2/n534_6 )
+);
+defparam \u_dsi_csi2/n534_s1 .INIT=16'hBEAA;
+LUT4 \u_dsi_csi2/n533_s1  (
+	.I0(\u_dsi_csi2/n539_11 ),
+	.I1(\u_dsi_csi2/rDataReg [28]),
+	.I2(\u_dsi_csi2/n533_7 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n533_6 )
+);
+defparam \u_dsi_csi2/n533_s1 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n532_s1  (
+	.I0(\u_dsi_csi2/n539_11 ),
+	.I1(\u_dsi_csi2/rDataReg [29]),
+	.I2(\u_dsi_csi2/n532_7 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n532_6 )
+);
+defparam \u_dsi_csi2/n532_s1 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n531_s1  (
+	.I0(\u_dsi_csi2/n539_11 ),
+	.I1(\u_dsi_csi2/rDataReg [30]),
+	.I2(\u_dsi_csi2/n531_7 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n531_6 )
+);
+defparam \u_dsi_csi2/n531_s1 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n530_s1  (
+	.I0(\u_dsi_csi2/n539_11 ),
+	.I1(\u_dsi_csi2/rDataReg [31]),
+	.I2(\u_dsi_csi2/n530_7 ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n530_6 )
+);
+defparam \u_dsi_csi2/n530_s1 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n655_s1  (
+	.I0(\u_dsi_csi2/n843_5 ),
+	.I1(\u_dsi_csi2/n655_7 ),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n655_6 )
+);
+defparam \u_dsi_csi2/n655_s1 .INIT=16'h3A00;
+LUT4 \u_dsi_csi2/n691_s1  (
+	.I0(\u_dsi_csi2/rEoLp ),
+	.I1(\u_dsi_csi2/rWcCnt [2]),
+	.I2(\u_dsi_csi2/n691_7 ),
+	.I3(\u_dsi_csi2/rDSel_2_14 ),
+	.F(\u_dsi_csi2/n691_6 )
+);
+defparam \u_dsi_csi2/n691_s1 .INIT=16'h00D7;
+LUT3 \u_dsi_csi2/n799_s1  (
+	.I0(\u_dsi_csi2/n796_3 ),
+	.I1(\u_dsi_csi2/rLpEn ),
+	.I2(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n799_6 )
+);
+defparam \u_dsi_csi2/n799_s1 .INIT=8'h40;
+LUT4 \u_dsi_csi2/n437_s3  (
+	.I0(\u_dsi_csi2/n427_5 ),
+	.I1(\u_dsi_csi2/rHSel [0]),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n437_8 )
+);
+defparam \u_dsi_csi2/n437_s3 .INIT=16'hA3FF;
+LUT3 \u_dsi_csi2/n731_s9  (
+	.I0(\u_dsi_csi2/rDataReg [15]),
+	.I1(\u_dsi_csi2/rDataReg [23]),
+	.I2(\u_dsi_csi2/n731_13 ),
+	.F(\u_dsi_csi2/n731_8 )
+);
+defparam \u_dsi_csi2/n731_s9 .INIT=8'hAC;
+LUT2 \u_dsi_csi2/n731_s6  (
+	.I0(\u_dsi_csi2/rDSel [2]),
+	.I1(\u_dsi_csi2/rDSel [1]),
+	.F(\u_dsi_csi2/n738_9 )
+);
+defparam \u_dsi_csi2/n731_s6 .INIT=4'hB;
+LUT3 \u_dsi_csi2/n732_s6  (
+	.I0(\u_dsi_csi2/rDataReg [14]),
+	.I1(\u_dsi_csi2/rDataReg [22]),
+	.I2(\u_dsi_csi2/n731_13 ),
+	.F(\u_dsi_csi2/n732_8 )
+);
+defparam \u_dsi_csi2/n732_s6 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n733_s6  (
+	.I0(\u_dsi_csi2/rDataReg [13]),
+	.I1(\u_dsi_csi2/rDataReg [21]),
+	.I2(\u_dsi_csi2/n731_13 ),
+	.F(\u_dsi_csi2/n733_8 )
+);
+defparam \u_dsi_csi2/n733_s6 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n734_s6  (
+	.I0(\u_dsi_csi2/rDataReg [12]),
+	.I1(\u_dsi_csi2/rDataReg [20]),
+	.I2(\u_dsi_csi2/n731_13 ),
+	.F(\u_dsi_csi2/n734_8 )
+);
+defparam \u_dsi_csi2/n734_s6 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n735_s6  (
+	.I0(\u_dsi_csi2/rDataReg [11]),
+	.I1(\u_dsi_csi2/rDataReg [19]),
+	.I2(\u_dsi_csi2/n731_13 ),
+	.F(\u_dsi_csi2/n735_8 )
+);
+defparam \u_dsi_csi2/n735_s6 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n736_s6  (
+	.I0(\u_dsi_csi2/rDataReg [10]),
+	.I1(\u_dsi_csi2/rDataReg [18]),
+	.I2(\u_dsi_csi2/n731_13 ),
+	.F(\u_dsi_csi2/n736_8 )
+);
+defparam \u_dsi_csi2/n736_s6 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n737_s6  (
+	.I0(\u_dsi_csi2/rDataReg [9]),
+	.I1(\u_dsi_csi2/rDataReg [17]),
+	.I2(\u_dsi_csi2/n731_13 ),
+	.F(\u_dsi_csi2/n737_8 )
+);
+defparam \u_dsi_csi2/n737_s6 .INIT=8'hAC;
+LUT3 \u_dsi_csi2/n738_s6  (
+	.I0(\u_dsi_csi2/rDataReg [8]),
+	.I1(\u_dsi_csi2/rDataReg [16]),
+	.I2(\u_dsi_csi2/n731_13 ),
+	.F(\u_dsi_csi2/n738_8 )
+);
+defparam \u_dsi_csi2/n738_s6 .INIT=8'hAC;
+LUT2 \u_dsi_csi2/n426_s6  (
+	.I0(\u_dsi_csi2/rWcCntP [0]),
+	.I1(\u_dsi_csi2/rWcCntP [1]),
+	.F(\u_dsi_csi2/n426_16 )
+);
+defparam \u_dsi_csi2/n426_s6 .INIT=4'h9;
+LUT3 \u_dsi_csi2/n425_s3  (
+	.I0(\u_dsi_csi2/rWcCntP [0]),
+	.I1(\u_dsi_csi2/rWcCntP [1]),
+	.I2(\u_dsi_csi2/rWcCntP [2]),
+	.F(\u_dsi_csi2/n425_11 )
+);
+defparam \u_dsi_csi2/n425_s3 .INIT=8'h78;
+LUT3 \u_dsi_csi2/n663_s2  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rWcCnt [1]),
+	.I2(\u_dsi_csi2/rWcCnt [0]),
+	.F(\u_dsi_csi2/n663_5 )
+);
+defparam \u_dsi_csi2/n663_s2 .INIT=8'h41;
+LUT4 \u_dsi_csi2/n663_s3  (
+	.I0(\u_dsi_csi2/n663_7 ),
+	.I1(\u_dsi_csi2/n663_8 ),
+	.I2(\u_dsi_csi2/n663_9 ),
+	.I3(\u_dsi_csi2/n663_10 ),
+	.F(\u_dsi_csi2/n663_6 )
+);
+defparam \u_dsi_csi2/n663_s3 .INIT=16'h8000;
+LUT3 \u_dsi_csi2/n715_s2  (
+	.I0(\u_dsi_csi2/rDSel [1]),
+	.I1(\u_dsi_csi2/rDSel [2]),
+	.I2(\u_dsi_csi2/rDSel [0]),
+	.F(\u_dsi_csi2/n715_5 )
+);
+defparam \u_dsi_csi2/n715_s2 .INIT=8'h10;
+LUT3 \u_dsi_csi2/n843_s2  (
+	.I0(\u_dsi_csi2/n843_7 ),
+	.I1(\u_dsi_csi2/n843_8 ),
+	.I2(\u_dsi_csi2/n543_7 ),
+	.F(\u_dsi_csi2/n843_5 )
+);
+defparam \u_dsi_csi2/n843_s2 .INIT=8'h20;
+LUT4 \u_dsi_csi2/n843_s3  (
+	.I0(\u_dsi_csi2/n843_9 ),
+	.I1(\u_dsi_csi2/rDataReg [13]),
+	.I2(\u_dsi_csi2/rDataReg [12]),
+	.I3(\u_dsi_csi2/n543_7 ),
+	.F(\u_dsi_csi2/n843_6 )
+);
+defparam \u_dsi_csi2/n843_s3 .INIT=16'h0100;
+LUT4 \u_dsi_csi2/n993_s1  (
+	.I0(\u_dsi_csi2/n993_8 ),
+	.I1(\u_dsi_csi2/rHeader [22]),
+	.I2(\u_dsi_csi2/n993_9 ),
+	.I3(\u_dsi_csi2/n993_10 ),
+	.F(\u_dsi_csi2/n993_4 )
+);
+defparam \u_dsi_csi2/n993_s1 .INIT=16'h9FF6;
+LUT4 \u_dsi_csi2/n993_s2  (
+	.I0(\u_dsi_csi2/rHeader [15]),
+	.I1(\u_dsi_csi2/rHeader [23]),
+	.I2(\u_dsi_csi2/n993_11 ),
+	.I3(\u_dsi_csi2/n993_12 ),
+	.F(\u_dsi_csi2/n993_5 )
+);
+defparam \u_dsi_csi2/n993_s2 .INIT=16'h9669;
+LUT4 \u_dsi_csi2/n993_s3  (
+	.I0(\u_dsi_csi2/rHeader [6]),
+	.I1(\u_dsi_csi2/rHeader [9]),
+	.I2(\u_dsi_csi2/n993_13 ),
+	.I3(\u_dsi_csi2/n993_14 ),
+	.F(\u_dsi_csi2/n993_6 )
+);
+defparam \u_dsi_csi2/n993_s3 .INIT=16'h9669;
+LUT4 \u_dsi_csi2/n993_s4  (
+	.I0(\u_dsi_csi2/n993_15 ),
+	.I1(\u_dsi_csi2/n993_16 ),
+	.I2(\u_dsi_csi2/n993_17 ),
+	.I3(\u_dsi_csi2/n993_18 ),
+	.F(\u_dsi_csi2/n993_7 )
+);
+defparam \u_dsi_csi2/n993_s4 .INIT=16'h8100;
+LUT3 \u_dsi_csi2/rSynced_s4  (
+	.I0(I_DATA0[1]),
+	.I1(I_DATA0[2]),
+	.I2(I_DATA0[3]),
+	.F(\u_dsi_csi2/rSynced_9 )
+);
+defparam \u_dsi_csi2/rSynced_s4 .INIT=8'h10;
+LUT4 \u_dsi_csi2/rSynced_s5  (
+	.I0(I_DATA0[6]),
+	.I1(I_DATA0[5]),
+	.I2(I_DATA0[4]),
+	.I3(I_DATA0[7]),
+	.F(\u_dsi_csi2/rSynced_10 )
+);
+defparam \u_dsi_csi2/rSynced_s5 .INIT=16'h4000;
+LUT2 \u_dsi_csi2/n436_s3  (
+	.I0(\u_dsi_csi2/rHSel [0]),
+	.I1(\u_dsi_csi2/rHSel [1]),
+	.F(\u_dsi_csi2/n436_8 )
+);
+defparam \u_dsi_csi2/n436_s3 .INIT=4'h6;
+LUT3 \u_dsi_csi2/n435_s4  (
+	.I0(\u_dsi_csi2/rHSel [0]),
+	.I1(\u_dsi_csi2/rHSel [1]),
+	.I2(\u_dsi_csi2/rHSel [2]),
+	.F(\u_dsi_csi2/n435_9 )
+);
+defparam \u_dsi_csi2/n435_s4 .INIT=8'h97;
+LUT2 \u_dsi_csi2/n629_s2  (
+	.I0(\u_dsi_csi2/rDataReg [17]),
+	.I1(\u_dsi_csi2/n539_11 ),
+	.F(\u_dsi_csi2/n629_7 )
+);
+defparam \u_dsi_csi2/n629_s2 .INIT=4'h4;
+LUT3 \u_dsi_csi2/n628_s2  (
+	.I0(\u_dsi_csi2/rWcCntP [0]),
+	.I1(\u_dsi_csi2/rWcCntP [1]),
+	.I2(\u_dsi_csi2/rWcCntP [2]),
+	.F(\u_dsi_csi2/n628_7 )
+);
+defparam \u_dsi_csi2/n628_s2 .INIT=8'h1E;
+LUT3 \u_dsi_csi2/n628_s3  (
+	.I0(\u_dsi_csi2/rDataReg [18]),
+	.I1(\u_dsi_csi2/rDataReg [17]),
+	.I2(\u_dsi_csi2/n543_7 ),
+	.F(\u_dsi_csi2/n628_8 )
+);
+defparam \u_dsi_csi2/n628_s3 .INIT=8'h60;
+LUT4 \u_dsi_csi2/n545_s2  (
+	.I0(\u_dsi_csi2/n663_8 ),
+	.I1(\u_dsi_csi2/n663_9 ),
+	.I2(\u_dsi_csi2/n663_10 ),
+	.I3(\u_dsi_csi2/n545_8 ),
+	.F(\u_dsi_csi2/n545_7 )
+);
+defparam \u_dsi_csi2/n545_s2 .INIT=16'h8000;
+LUT3 \u_dsi_csi2/n543_s2  (
+	.I0(\u_dsi_csi2/rHSel [0]),
+	.I1(\u_dsi_csi2/rHSel [1]),
+	.I2(\u_dsi_csi2/rHSel [2]),
+	.F(\u_dsi_csi2/n543_7 )
+);
+defparam \u_dsi_csi2/n543_s2 .INIT=8'h10;
+LUT2 \u_dsi_csi2/n543_s3  (
+	.I0(\u_dsi_csi2/rLpPeriod ),
+	.I1(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n543_8 )
+);
+defparam \u_dsi_csi2/n543_s3 .INIT=4'h4;
+LUT4 \u_dsi_csi2/n543_s4  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rDSel_2_14 ),
+	.I2(\u_dsi_csi2/rWcCnt [2]),
+	.I3(\u_dsi_csi2/n691_7 ),
+	.F(\u_dsi_csi2/n543_9 )
+);
+defparam \u_dsi_csi2/n543_s4 .INIT=16'h0110;
+LUT4 \u_dsi_csi2/n542_s2  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rDSel_2_14 ),
+	.I2(\u_dsi_csi2/n542_10 ),
+	.I3(\u_dsi_csi2/rWcCnt [3]),
+	.F(\u_dsi_csi2/n542_7 )
+);
+defparam \u_dsi_csi2/n542_s2 .INIT=16'h0110;
+LUT4 \u_dsi_csi2/n541_s2  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rDSel_2_14 ),
+	.I2(\u_dsi_csi2/rWcCnt [4]),
+	.I3(\u_dsi_csi2/n541_8 ),
+	.F(\u_dsi_csi2/n541_7 )
+);
+defparam \u_dsi_csi2/n541_s2 .INIT=16'h0110;
+LUT3 \u_dsi_csi2/n540_s3  (
+	.I0(\u_dsi_csi2/rWcCnt [4]),
+	.I1(\u_dsi_csi2/n541_8 ),
+	.I2(\u_dsi_csi2/rWcCnt [5]),
+	.F(\u_dsi_csi2/n540_8 )
+);
+defparam \u_dsi_csi2/n540_s3 .INIT=8'h4B;
+LUT4 \u_dsi_csi2/n539_s3  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rWcCnt [6]),
+	.I2(\u_dsi_csi2/n539_9 ),
+	.I3(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/n539_8 )
+);
+defparam \u_dsi_csi2/n539_s3 .INIT=16'hEB00;
+LUT4 \u_dsi_csi2/n538_s2  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rWcCnt [7]),
+	.I2(\u_dsi_csi2/n538_8 ),
+	.I3(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/n538_7 )
+);
+defparam \u_dsi_csi2/n538_s2 .INIT=16'hEB00;
+LUT2 \u_dsi_csi2/n537_s3  (
+	.I0(\u_dsi_csi2/n663_8 ),
+	.I1(\u_dsi_csi2/n545_8 ),
+	.F(\u_dsi_csi2/n537_8 )
+);
+defparam \u_dsi_csi2/n537_s3 .INIT=4'h8;
+LUT4 \u_dsi_csi2/n536_s2  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rWcCnt [8]),
+	.I2(\u_dsi_csi2/n537_8 ),
+	.I3(\u_dsi_csi2/rWcCnt [9]),
+	.F(\u_dsi_csi2/n536_7 )
+);
+defparam \u_dsi_csi2/n536_s2 .INIT=16'h30EF;
+LUT2 \u_dsi_csi2/n536_s3  (
+	.I0(\u_dsi_csi2/rDataReg [25]),
+	.I1(\u_dsi_csi2/n539_11 ),
+	.F(\u_dsi_csi2/n536_8 )
+);
+defparam \u_dsi_csi2/n536_s3 .INIT=4'h4;
+LUT4 \u_dsi_csi2/n535_s2  (
+	.I0(\u_dsi_csi2/n663_6 ),
+	.I1(\u_dsi_csi2/n535_8 ),
+	.I2(\u_dsi_csi2/rWcCnt [10]),
+	.I3(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/n535_7 )
+);
+defparam \u_dsi_csi2/n535_s2 .INIT=16'hCB00;
+LUT4 \u_dsi_csi2/n534_s3  (
+	.I0(\u_dsi_csi2/rWcCnt [8]),
+	.I1(\u_dsi_csi2/rWcCnt [9]),
+	.I2(\u_dsi_csi2/rWcCnt [10]),
+	.I3(\u_dsi_csi2/n537_8 ),
+	.F(\u_dsi_csi2/n534_8 )
+);
+defparam \u_dsi_csi2/n534_s3 .INIT=16'h0100;
+LUT4 \u_dsi_csi2/n533_s2  (
+	.I0(\u_dsi_csi2/n663_10 ),
+	.I1(\u_dsi_csi2/n533_8 ),
+	.I2(\u_dsi_csi2/rWcCnt [12]),
+	.I3(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/n533_7 )
+);
+defparam \u_dsi_csi2/n533_s2 .INIT=16'hCB00;
+LUT4 \u_dsi_csi2/n532_s2  (
+	.I0(\u_dsi_csi2/n663_10 ),
+	.I1(\u_dsi_csi2/n532_8 ),
+	.I2(\u_dsi_csi2/rWcCnt [13]),
+	.I3(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/n532_7 )
+);
+defparam \u_dsi_csi2/n532_s2 .INIT=16'hCB00;
+LUT4 \u_dsi_csi2/n531_s2  (
+	.I0(\u_dsi_csi2/rWcCnt [15]),
+	.I1(\u_dsi_csi2/rWcCnt [14]),
+	.I2(\u_dsi_csi2/n531_8 ),
+	.I3(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/n531_7 )
+);
+defparam \u_dsi_csi2/n531_s2 .INIT=16'hD300;
+LUT4 \u_dsi_csi2/n530_s2  (
+	.I0(\u_dsi_csi2/rWcCnt [14]),
+	.I1(\u_dsi_csi2/n531_8 ),
+	.I2(\u_dsi_csi2/rWcCnt [15]),
+	.I3(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/n530_7 )
+);
+defparam \u_dsi_csi2/n530_s2 .INIT=16'h4F00;
+LUT2 \u_dsi_csi2/n655_s2  (
+	.I0(\u_dsi_csi2/rWcCnt [1]),
+	.I1(\u_dsi_csi2/n663_6 ),
+	.F(\u_dsi_csi2/n655_7 )
+);
+defparam \u_dsi_csi2/n655_s2 .INIT=4'h4;
+LUT2 \u_dsi_csi2/n691_s2  (
+	.I0(\u_dsi_csi2/rWcCnt [0]),
+	.I1(\u_dsi_csi2/rWcCnt [1]),
+	.F(\u_dsi_csi2/n691_7 )
+);
+defparam \u_dsi_csi2/n691_s2 .INIT=4'h1;
+LUT2 \u_dsi_csi2/n663_s4  (
+	.I0(\u_dsi_csi2/rWcCnt [4]),
+	.I1(\u_dsi_csi2/rWcCnt [7]),
+	.F(\u_dsi_csi2/n663_7 )
+);
+defparam \u_dsi_csi2/n663_s4 .INIT=4'h1;
+LUT4 \u_dsi_csi2/n663_s5  (
+	.I0(\u_dsi_csi2/rWcCnt [2]),
+	.I1(\u_dsi_csi2/rWcCnt [3]),
+	.I2(\u_dsi_csi2/rWcCnt [5]),
+	.I3(\u_dsi_csi2/rWcCnt [6]),
+	.F(\u_dsi_csi2/n663_8 )
+);
+defparam \u_dsi_csi2/n663_s5 .INIT=16'h0001;
+LUT4 \u_dsi_csi2/n663_s6  (
+	.I0(\u_dsi_csi2/rWcCnt [8]),
+	.I1(\u_dsi_csi2/rWcCnt [9]),
+	.I2(\u_dsi_csi2/rWcCnt [10]),
+	.I3(\u_dsi_csi2/rWcCnt [11]),
+	.F(\u_dsi_csi2/n663_9 )
+);
+defparam \u_dsi_csi2/n663_s6 .INIT=16'h0001;
+LUT4 \u_dsi_csi2/n663_s7  (
+	.I0(\u_dsi_csi2/rWcCnt [12]),
+	.I1(\u_dsi_csi2/rWcCnt [13]),
+	.I2(\u_dsi_csi2/rWcCnt [14]),
+	.I3(\u_dsi_csi2/rWcCnt [15]),
+	.F(\u_dsi_csi2/n663_10 )
+);
+defparam \u_dsi_csi2/n663_s7 .INIT=16'h0001;
+LUT4 \u_dsi_csi2/n843_s4  (
+	.I0(\u_dsi_csi2/rDataReg [11]),
+	.I1(\u_dsi_csi2/n843_10 ),
+	.I2(\u_dsi_csi2/rDataReg [12]),
+	.I3(\u_dsi_csi2/rDataReg [13]),
+	.F(\u_dsi_csi2/n843_7 )
+);
+defparam \u_dsi_csi2/n843_s4 .INIT=16'h5FC0;
+LUT4 \u_dsi_csi2/n843_s5  (
+	.I0(\u_dsi_csi2/rDataReg [9]),
+	.I1(\u_dsi_csi2/n843_11 ),
+	.I2(\u_dsi_csi2/rDataReg [12]),
+	.I3(\u_dsi_csi2/rDataReg [10]),
+	.F(\u_dsi_csi2/n843_8 )
+);
+defparam \u_dsi_csi2/n843_s5 .INIT=16'h0E00;
+LUT2 \u_dsi_csi2/n843_s6  (
+	.I0(\u_dsi_csi2/rDataReg [11]),
+	.I1(\u_dsi_csi2/rDataReg [10]),
+	.F(\u_dsi_csi2/n843_9 )
+);
+defparam \u_dsi_csi2/n843_s6 .INIT=4'h4;
+LUT4 \u_dsi_csi2/n993_s5  (
+	.I0(\u_dsi_csi2/rHeader [23]),
+	.I1(\u_dsi_csi2/rHeader [1]),
+	.I2(\u_dsi_csi2/rHeader [0]),
+	.I3(\u_dsi_csi2/n993_19 ),
+	.F(\u_dsi_csi2/n993_8 )
+);
+defparam \u_dsi_csi2/n993_s5 .INIT=16'h6996;
+LUT4 \u_dsi_csi2/n993_s6  (
+	.I0(\u_dsi_csi2/n993_20 ),
+	.I1(\u_dsi_csi2/rHeader [12]),
+	.I2(\u_dsi_csi2/rHeader [14]),
+	.I3(\u_dsi_csi2/rHeader [17]),
+	.F(\u_dsi_csi2/n993_9 )
+);
+defparam \u_dsi_csi2/n993_s6 .INIT=16'h9669;
+LUT4 \u_dsi_csi2/n993_s7  (
+	.I0(\u_dsi_csi2/n993_21 ),
+	.I1(\u_dsi_csi2/rHeader [11]),
+	.I2(\u_dsi_csi2/rHeader [13]),
+	.I3(\u_dsi_csi2/rHeader [16]),
+	.F(\u_dsi_csi2/n993_10 )
+);
+defparam \u_dsi_csi2/n993_s7 .INIT=16'h9669;
+LUT4 \u_dsi_csi2/n993_s8  (
+	.I0(\u_dsi_csi2/rHeader [19]),
+	.I1(\u_dsi_csi2/rHeader [7]),
+	.I2(\u_dsi_csi2/rHeader [8]),
+	.I3(\u_dsi_csi2/rHeader [9]),
+	.F(\u_dsi_csi2/n993_11 )
+);
+defparam \u_dsi_csi2/n993_s8 .INIT=16'h9669;
+LUT4 \u_dsi_csi2/n993_s9  (
+	.I0(\u_dsi_csi2/n993_22 ),
+	.I1(\u_dsi_csi2/rHeader [13]),
+	.I2(\u_dsi_csi2/rHeader [14]),
+	.I3(\u_dsi_csi2/n993_23 ),
+	.F(\u_dsi_csi2/n993_12 )
+);
+defparam \u_dsi_csi2/n993_s9 .INIT=16'h6996;
+LUT4 \u_dsi_csi2/n993_s10  (
+	.I0(\u_dsi_csi2/rHeader [11]),
+	.I1(\u_dsi_csi2/rHeader [12]),
+	.I2(\u_dsi_csi2/rHeader [15]),
+	.I3(\u_dsi_csi2/rHeader [18]),
+	.F(\u_dsi_csi2/n993_13 )
+);
+defparam \u_dsi_csi2/n993_s10 .INIT=16'h9669;
+LUT4 \u_dsi_csi2/n993_s11  (
+	.I0(\u_dsi_csi2/n993_24 ),
+	.I1(\u_dsi_csi2/rHeader [22]),
+	.I2(\u_dsi_csi2/rHeader [5]),
+	.I3(\u_dsi_csi2/n993_23 ),
+	.F(\u_dsi_csi2/n993_14 )
+);
+defparam \u_dsi_csi2/n993_s11 .INIT=16'h6996;
+LUT4 \u_dsi_csi2/n993_s12  (
+	.I0(\u_dsi_csi2/n993_25 ),
+	.I1(\u_dsi_csi2/rHeader [18]),
+	.I2(\u_dsi_csi2/rHeader [4]),
+	.I3(\u_dsi_csi2/n993_11 ),
+	.F(\u_dsi_csi2/n993_15 )
+);
+defparam \u_dsi_csi2/n993_s12 .INIT=16'h6996;
+LUT4 \u_dsi_csi2/n993_s13  (
+	.I0(\u_dsi_csi2/n993_26 ),
+	.I1(\u_dsi_csi2/rHeader [10]),
+	.I2(\u_dsi_csi2/rHeader [13]),
+	.I3(\u_dsi_csi2/n993_13 ),
+	.F(\u_dsi_csi2/n993_16 )
+);
+defparam \u_dsi_csi2/n993_s13 .INIT=16'h6996;
+LUT4 \u_dsi_csi2/n993_s14  (
+	.I0(\u_dsi_csi2/rHeader [16]),
+	.I1(\u_dsi_csi2/rHeader [17]),
+	.I2(\u_dsi_csi2/rHeader [22]),
+	.I3(\u_dsi_csi2/rHeader [23]),
+	.F(\u_dsi_csi2/n993_17 )
+);
+defparam \u_dsi_csi2/n993_s14 .INIT=16'h9669;
+LUT4 \u_dsi_csi2/n993_s15  (
+	.I0(\u_dsi_csi2/rLpEn ),
+	.I1(\u_dsi_csi2/rSpEn ),
+	.I2(\u_dsi_csi2/rHeader [30]),
+	.I3(\u_dsi_csi2/rHeader [31]),
+	.F(\u_dsi_csi2/n993_18 )
+);
+defparam \u_dsi_csi2/n993_s15 .INIT=16'h000E;
+LUT4 \u_dsi_csi2/n545_s3  (
+	.I0(\u_dsi_csi2/rWcCnt [0]),
+	.I1(\u_dsi_csi2/rWcCnt [1]),
+	.I2(\u_dsi_csi2/rWcCnt [4]),
+	.I3(\u_dsi_csi2/rWcCnt [7]),
+	.F(\u_dsi_csi2/n545_8 )
+);
+defparam \u_dsi_csi2/n545_s3 .INIT=16'h0001;
+LUT4 \u_dsi_csi2/n541_s3  (
+	.I0(\u_dsi_csi2/rWcCnt [0]),
+	.I1(\u_dsi_csi2/rWcCnt [1]),
+	.I2(\u_dsi_csi2/rWcCnt [2]),
+	.I3(\u_dsi_csi2/rWcCnt [3]),
+	.F(\u_dsi_csi2/n541_8 )
+);
+defparam \u_dsi_csi2/n541_s3 .INIT=16'h0001;
+LUT3 \u_dsi_csi2/n539_s4  (
+	.I0(\u_dsi_csi2/rWcCnt [4]),
+	.I1(\u_dsi_csi2/rWcCnt [5]),
+	.I2(\u_dsi_csi2/n541_8 ),
+	.F(\u_dsi_csi2/n539_9 )
+);
+defparam \u_dsi_csi2/n539_s4 .INIT=8'h10;
+LUT4 \u_dsi_csi2/n538_s3  (
+	.I0(\u_dsi_csi2/rWcCnt [4]),
+	.I1(\u_dsi_csi2/rWcCnt [5]),
+	.I2(\u_dsi_csi2/rWcCnt [6]),
+	.I3(\u_dsi_csi2/n541_8 ),
+	.F(\u_dsi_csi2/n538_8 )
+);
+defparam \u_dsi_csi2/n538_s3 .INIT=16'h0100;
+LUT4 \u_dsi_csi2/n535_s3  (
+	.I0(\u_dsi_csi2/rWcCnt [8]),
+	.I1(\u_dsi_csi2/rWcCnt [9]),
+	.I2(\u_dsi_csi2/n663_8 ),
+	.I3(\u_dsi_csi2/n545_8 ),
+	.F(\u_dsi_csi2/n535_8 )
+);
+defparam \u_dsi_csi2/n535_s3 .INIT=16'h1000;
+LUT3 \u_dsi_csi2/n533_s3  (
+	.I0(\u_dsi_csi2/n663_8 ),
+	.I1(\u_dsi_csi2/n663_9 ),
+	.I2(\u_dsi_csi2/n545_8 ),
+	.F(\u_dsi_csi2/n533_8 )
+);
+defparam \u_dsi_csi2/n533_s3 .INIT=8'h80;
+LUT4 \u_dsi_csi2/n532_s3  (
+	.I0(\u_dsi_csi2/rWcCnt [12]),
+	.I1(\u_dsi_csi2/n663_8 ),
+	.I2(\u_dsi_csi2/n663_9 ),
+	.I3(\u_dsi_csi2/n545_8 ),
+	.F(\u_dsi_csi2/n532_8 )
+);
+defparam \u_dsi_csi2/n532_s3 .INIT=16'h4000;
+LUT4 \u_dsi_csi2/n531_s3  (
+	.I0(\u_dsi_csi2/n531_9 ),
+	.I1(\u_dsi_csi2/n663_8 ),
+	.I2(\u_dsi_csi2/n663_9 ),
+	.I3(\u_dsi_csi2/n545_8 ),
+	.F(\u_dsi_csi2/n531_8 )
+);
+defparam \u_dsi_csi2/n531_s3 .INIT=16'h8000;
+LUT4 \u_dsi_csi2/n843_s7  (
+	.I0(\u_dsi_csi2/rDataReg [9]),
+	.I1(\u_dsi_csi2/rDataReg [8]),
+	.I2(\u_dsi_csi2/rDataReg [11]),
+	.I3(\u_dsi_csi2/rDataReg [10]),
+	.F(\u_dsi_csi2/n843_10 )
+);
+defparam \u_dsi_csi2/n843_s7 .INIT=16'hF077;
+LUT2 \u_dsi_csi2/n843_s8  (
+	.I0(\u_dsi_csi2/rDataReg [11]),
+	.I1(\u_dsi_csi2/rDataReg [8]),
+	.F(\u_dsi_csi2/n843_11 )
+);
+defparam \u_dsi_csi2/n843_s8 .INIT=4'h4;
+LUT4 \u_dsi_csi2/n993_s16  (
+	.I0(\u_dsi_csi2/rHeader [10]),
+	.I1(\u_dsi_csi2/rHeader [21]),
+	.I2(\u_dsi_csi2/rHeader [4]),
+	.I3(\u_dsi_csi2/rHeader [20]),
+	.F(\u_dsi_csi2/n993_19 )
+);
+defparam \u_dsi_csi2/n993_s16 .INIT=16'h9669;
+LUT4 \u_dsi_csi2/n993_s17  (
+	.I0(\u_dsi_csi2/rHeader [6]),
+	.I1(\u_dsi_csi2/rHeader [8]),
+	.I2(\u_dsi_csi2/rHeader [3]),
+	.I3(\u_dsi_csi2/rHeader [25]),
+	.F(\u_dsi_csi2/n993_20 )
+);
+defparam \u_dsi_csi2/n993_s17 .INIT=16'h6996;
+LUT4 \u_dsi_csi2/n993_s18  (
+	.I0(\u_dsi_csi2/rHeader [5]),
+	.I1(\u_dsi_csi2/rHeader [7]),
+	.I2(\u_dsi_csi2/rHeader [2]),
+	.I3(\u_dsi_csi2/rHeader [24]),
+	.F(\u_dsi_csi2/n993_21 )
+);
+defparam \u_dsi_csi2/n993_s18 .INIT=16'h6996;
+LUT2 \u_dsi_csi2/n993_s19  (
+	.I0(\u_dsi_csi2/rHeader [1]),
+	.I1(\u_dsi_csi2/rHeader [27]),
+	.F(\u_dsi_csi2/n993_22 )
+);
+defparam \u_dsi_csi2/n993_s19 .INIT=4'h6;
+LUT4 \u_dsi_csi2/n993_s20  (
+	.I0(\u_dsi_csi2/rHeader [21]),
+	.I1(\u_dsi_csi2/rHeader [20]),
+	.I2(\u_dsi_csi2/rHeader [2]),
+	.I3(\u_dsi_csi2/rHeader [3]),
+	.F(\u_dsi_csi2/n993_23 )
+);
+defparam \u_dsi_csi2/n993_s20 .INIT=16'h9669;
+LUT2 \u_dsi_csi2/n993_s21  (
+	.I0(\u_dsi_csi2/rHeader [0]),
+	.I1(\u_dsi_csi2/rHeader [26]),
+	.F(\u_dsi_csi2/n993_24 )
+);
+defparam \u_dsi_csi2/n993_s21 .INIT=4'h6;
+LUT4 \u_dsi_csi2/n993_s22  (
+	.I0(\u_dsi_csi2/rHeader [5]),
+	.I1(\u_dsi_csi2/rHeader [6]),
+	.I2(\u_dsi_csi2/rHeader [20]),
+	.I3(\u_dsi_csi2/rHeader [28]),
+	.F(\u_dsi_csi2/n993_25 )
+);
+defparam \u_dsi_csi2/n993_s22 .INIT=16'h6996;
+LUT4 \u_dsi_csi2/n993_s23  (
+	.I0(\u_dsi_csi2/rHeader [14]),
+	.I1(\u_dsi_csi2/rHeader [19]),
+	.I2(\u_dsi_csi2/rHeader [21]),
+	.I3(\u_dsi_csi2/rHeader [29]),
+	.F(\u_dsi_csi2/n993_26 )
+);
+defparam \u_dsi_csi2/n993_s23 .INIT=16'h6996;
+LUT2 \u_dsi_csi2/n531_s4  (
+	.I0(\u_dsi_csi2/rWcCnt [12]),
+	.I1(\u_dsi_csi2/rWcCnt [13]),
+	.F(\u_dsi_csi2/n531_9 )
+);
+defparam \u_dsi_csi2/n531_s4 .INIT=4'h1;
+LUT3 \u_dsi_csi2/n542_s4  (
+	.I0(\u_dsi_csi2/rWcCnt [2]),
+	.I1(\u_dsi_csi2/rWcCnt [0]),
+	.I2(\u_dsi_csi2/rWcCnt [1]),
+	.F(\u_dsi_csi2/n542_10 )
+);
+defparam \u_dsi_csi2/n542_s4 .INIT=8'h01;
+LUT4 \u_dsi_csi2/n534_s4  (
+	.I0(\u_dsi_csi2/n543_7 ),
+	.I1(\u_dsi_csi2/rDataReg [27]),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n534_10 )
+);
+defparam \u_dsi_csi2/n534_s4 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n537_s4  (
+	.I0(\u_dsi_csi2/n543_7 ),
+	.I1(\u_dsi_csi2/rDataReg [24]),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n537_10 )
+);
+defparam \u_dsi_csi2/n537_s4 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n630_s3  (
+	.I0(\u_dsi_csi2/n543_7 ),
+	.I1(\u_dsi_csi2/rDataReg [16]),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n630_9 )
+);
+defparam \u_dsi_csi2/n630_s3 .INIT=16'h0D00;
+LUT4 \u_dsi_csi2/n785_s2  (
+	.I0(\u_dsi_csi2/rLpEn ),
+	.I1(\u_dsi_csi2/n843_5 ),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n785_8 )
+);
+defparam \u_dsi_csi2/n785_s2 .INIT=16'h0400;
+LUT4 \u_dsi_csi2/n773_s2  (
+	.I0(\u_dsi_csi2/rSpEn ),
+	.I1(\u_dsi_csi2/n843_6 ),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n773_8 )
+);
+defparam \u_dsi_csi2/n773_s2 .INIT=16'h0400;
+LUT3 \u_dsi_csi2/n731_s8  (
+	.I0(\u_dsi_csi2/rDSel [2]),
+	.I1(\u_dsi_csi2/rDSel [1]),
+	.I2(\u_dsi_csi2/rDSel [0]),
+	.F(\u_dsi_csi2/n731_13 )
+);
+defparam \u_dsi_csi2/n731_s8 .INIT=8'h40;
+LUT4 \u_dsi_csi2/n539_s5  (
+	.I0(\u_dsi_csi2/rLpPeriod ),
+	.I1(\u_dsi_csi2/rHSel [0]),
+	.I2(\u_dsi_csi2/rHSel [1]),
+	.I3(\u_dsi_csi2/rHSel [2]),
+	.F(\u_dsi_csi2/n539_11 )
+);
+defparam \u_dsi_csi2/n539_s5 .INIT=16'h0100;
+LUT4 \u_dsi_csi2/n540_s5  (
+	.I0(\u_dsi_csi2/rDataReg [21]),
+	.I1(\u_dsi_csi2/rHSel [0]),
+	.I2(\u_dsi_csi2/rHSel [1]),
+	.I3(\u_dsi_csi2/rHSel [2]),
+	.F(\u_dsi_csi2/n540_11 )
+);
+defparam \u_dsi_csi2/n540_s5 .INIT=16'h0100;
+LUT3 \u_dsi_csi2/n540_s6  (
+	.I0(\u_dsi_csi2/n545_7 ),
+	.I1(\u_dsi_csi2/rLpPeriod ),
+	.I2(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n540_13 )
+);
+defparam \u_dsi_csi2/n540_s6 .INIT=8'h40;
+LUT4 \u_dsi_csi2/n630_s4  (
+	.I0(\u_dsi_csi2/rLpPeriod ),
+	.I1(\u_dsi_csi2/rDataEn ),
+	.I2(\u_dsi_csi2/rWcCntP [0]),
+	.I3(\u_dsi_csi2/n630_9 ),
+	.F(\u_dsi_csi2/n630_11 )
+);
+defparam \u_dsi_csi2/n630_s4 .INIT=16'hFF08;
+LUT3 \u_dsi_csi2/rHSel_2_s4  (
+	.I0(\u_dsi_csi2/rEoLp ),
+	.I1(\u_dsi_csi2/rLpPeriod ),
+	.I2(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/rHSel_2_10 )
+);
+defparam \u_dsi_csi2/rHSel_2_s4 .INIT=8'hBF;
+LUT4 \u_dsi_csi2/n467_s4  (
+	.I0(\u_dsi_csi2/rHSel [2]),
+	.I1(\u_dsi_csi2/rDSel [2]),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n467_13 )
+);
+defparam \u_dsi_csi2/n467_s4 .INIT=16'hC500;
+LUT2 \u_dsi_csi2/rDSel_2_s5  (
+	.I0(\u_dsi_csi2/rDataEn ),
+	.I1(\u_dsi_csi2/rLpPeriod ),
+	.F(\u_dsi_csi2/rDSel_2_14 )
+);
+defparam \u_dsi_csi2/rDSel_2_s5 .INIT=4'h7;
+LUT4 \u_dsi_csi2/n468_s3  (
+	.I0(\u_dsi_csi2/rHSel [1]),
+	.I1(\u_dsi_csi2/rDSel [1]),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n468_9 )
+);
+defparam \u_dsi_csi2/n468_s3 .INIT=16'hCA00;
+LUT4 \u_dsi_csi2/n469_s3  (
+	.I0(\u_dsi_csi2/rHSel [0]),
+	.I1(\u_dsi_csi2/rDSel [0]),
+	.I2(\u_dsi_csi2/rLpPeriod ),
+	.I3(\u_dsi_csi2/rDataEn ),
+	.F(\u_dsi_csi2/n469_9 )
+);
+defparam \u_dsi_csi2/n469_s3 .INIT=16'hCA00;
+DFFCE \u_dsi_csi2/rDataEn_s0  (
+	.D(\u_dsi_csi2/n28_4 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rDataEn )
+);
+defparam \u_dsi_csi2/rDataEn_s0 .INIT=1'b0;
+DFFSE \u_dsi_csi2/rData_7_s0  (
+	.D(I_DATA0[7]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.SET(\u_dsi_csi2/n31_5 ),
+	.Q(\u_dsi_csi2/rData [7])
+);
+defparam \u_dsi_csi2/rData_7_s0 .INIT=1'b1;
+DFFSE \u_dsi_csi2/rData_6_s0  (
+	.D(I_DATA0[6]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.SET(\u_dsi_csi2/n31_5 ),
+	.Q(\u_dsi_csi2/rData [6])
+);
+defparam \u_dsi_csi2/rData_6_s0 .INIT=1'b1;
+DFFSE \u_dsi_csi2/rData_5_s0  (
+	.D(I_DATA0[5]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.SET(\u_dsi_csi2/n31_5 ),
+	.Q(\u_dsi_csi2/rData [5])
+);
+defparam \u_dsi_csi2/rData_5_s0 .INIT=1'b1;
+DFFSE \u_dsi_csi2/rData_4_s0  (
+	.D(I_DATA0[4]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.SET(\u_dsi_csi2/n31_5 ),
+	.Q(\u_dsi_csi2/rData [4])
+);
+defparam \u_dsi_csi2/rData_4_s0 .INIT=1'b1;
+DFFSE \u_dsi_csi2/rData_3_s0  (
+	.D(I_DATA0[3]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.SET(\u_dsi_csi2/n31_5 ),
+	.Q(\u_dsi_csi2/rData [3])
+);
+defparam \u_dsi_csi2/rData_3_s0 .INIT=1'b1;
+DFFSE \u_dsi_csi2/rData_2_s0  (
+	.D(I_DATA0[2]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.SET(\u_dsi_csi2/n31_5 ),
+	.Q(\u_dsi_csi2/rData [2])
+);
+defparam \u_dsi_csi2/rData_2_s0 .INIT=1'b1;
+DFFSE \u_dsi_csi2/rData_1_s0  (
+	.D(I_DATA0[1]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.SET(\u_dsi_csi2/n31_5 ),
+	.Q(\u_dsi_csi2/rData [1])
+);
+defparam \u_dsi_csi2/rData_1_s0 .INIT=1'b1;
+DFFSE \u_dsi_csi2/rData_0_s0  (
+	.D(I_DATA0[0]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.SET(\u_dsi_csi2/n31_5 ),
+	.Q(\u_dsi_csi2/rData [0])
+);
+defparam \u_dsi_csi2/rData_0_s0 .INIT=1'b1;
+DFFRE \u_dsi_csi2/rDataReg_31_s0  (
+	.D(\u_dsi_csi2/rData [7]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [31])
+);
+defparam \u_dsi_csi2/rDataReg_31_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_30_s0  (
+	.D(\u_dsi_csi2/rData [6]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [30])
+);
+defparam \u_dsi_csi2/rDataReg_30_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_29_s0  (
+	.D(\u_dsi_csi2/rData [5]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [29])
+);
+defparam \u_dsi_csi2/rDataReg_29_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_28_s0  (
+	.D(\u_dsi_csi2/rData [4]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [28])
+);
+defparam \u_dsi_csi2/rDataReg_28_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_27_s0  (
+	.D(\u_dsi_csi2/rData [3]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [27])
+);
+defparam \u_dsi_csi2/rDataReg_27_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_26_s0  (
+	.D(\u_dsi_csi2/rData [2]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [26])
+);
+defparam \u_dsi_csi2/rDataReg_26_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_25_s0  (
+	.D(\u_dsi_csi2/rData [1]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [25])
+);
+defparam \u_dsi_csi2/rDataReg_25_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_24_s0  (
+	.D(\u_dsi_csi2/rData [0]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [24])
+);
+defparam \u_dsi_csi2/rDataReg_24_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_23_s0  (
+	.D(\u_dsi_csi2/rDataReg [31]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [23])
+);
+defparam \u_dsi_csi2/rDataReg_23_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_22_s0  (
+	.D(\u_dsi_csi2/rDataReg [30]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [22])
+);
+defparam \u_dsi_csi2/rDataReg_22_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_21_s0  (
+	.D(\u_dsi_csi2/rDataReg [29]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [21])
+);
+defparam \u_dsi_csi2/rDataReg_21_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_20_s0  (
+	.D(\u_dsi_csi2/rDataReg [28]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [20])
+);
+defparam \u_dsi_csi2/rDataReg_20_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_19_s0  (
+	.D(\u_dsi_csi2/rDataReg [27]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [19])
+);
+defparam \u_dsi_csi2/rDataReg_19_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_18_s0  (
+	.D(\u_dsi_csi2/rDataReg [26]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [18])
+);
+defparam \u_dsi_csi2/rDataReg_18_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_17_s0  (
+	.D(\u_dsi_csi2/rDataReg [25]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [17])
+);
+defparam \u_dsi_csi2/rDataReg_17_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_16_s0  (
+	.D(\u_dsi_csi2/rDataReg [24]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [16])
+);
+defparam \u_dsi_csi2/rDataReg_16_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_15_s0  (
+	.D(\u_dsi_csi2/rDataReg [23]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [15])
+);
+defparam \u_dsi_csi2/rDataReg_15_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_14_s0  (
+	.D(\u_dsi_csi2/rDataReg [22]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [14])
+);
+defparam \u_dsi_csi2/rDataReg_14_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_13_s0  (
+	.D(\u_dsi_csi2/rDataReg [21]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [13])
+);
+defparam \u_dsi_csi2/rDataReg_13_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_12_s0  (
+	.D(\u_dsi_csi2/rDataReg [20]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [12])
+);
+defparam \u_dsi_csi2/rDataReg_12_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_11_s0  (
+	.D(\u_dsi_csi2/rDataReg [19]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [11])
+);
+defparam \u_dsi_csi2/rDataReg_11_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_10_s0  (
+	.D(\u_dsi_csi2/rDataReg [18]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [10])
+);
+defparam \u_dsi_csi2/rDataReg_10_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_9_s0  (
+	.D(\u_dsi_csi2/rDataReg [17]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [9])
+);
+defparam \u_dsi_csi2/rDataReg_9_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rDataReg_8_s0  (
+	.D(\u_dsi_csi2/rDataReg [16]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rDataEn ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rDataReg [8])
+);
+defparam \u_dsi_csi2/rDataReg_8_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_15_s0  (
+	.D(\u_dsi_csi2/n530_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [15])
+);
+defparam \u_dsi_csi2/rWcCnt_15_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_14_s0  (
+	.D(\u_dsi_csi2/n531_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [14])
+);
+defparam \u_dsi_csi2/rWcCnt_14_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_13_s0  (
+	.D(\u_dsi_csi2/n532_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [13])
+);
+defparam \u_dsi_csi2/rWcCnt_13_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_12_s0  (
+	.D(\u_dsi_csi2/n533_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [12])
+);
+defparam \u_dsi_csi2/rWcCnt_12_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_11_s0  (
+	.D(\u_dsi_csi2/n534_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [11])
+);
+defparam \u_dsi_csi2/rWcCnt_11_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_10_s0  (
+	.D(\u_dsi_csi2/n535_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [10])
+);
+defparam \u_dsi_csi2/rWcCnt_10_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_9_s0  (
+	.D(\u_dsi_csi2/n536_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [9])
+);
+defparam \u_dsi_csi2/rWcCnt_9_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_8_s0  (
+	.D(\u_dsi_csi2/n537_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [8])
+);
+defparam \u_dsi_csi2/rWcCnt_8_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_7_s0  (
+	.D(\u_dsi_csi2/n538_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [7])
+);
+defparam \u_dsi_csi2/rWcCnt_7_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_6_s0  (
+	.D(\u_dsi_csi2/n539_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [6])
+);
+defparam \u_dsi_csi2/rWcCnt_6_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_5_s0  (
+	.D(\u_dsi_csi2/n540_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [5])
+);
+defparam \u_dsi_csi2/rWcCnt_5_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_4_s0  (
+	.D(\u_dsi_csi2/n541_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [4])
+);
+defparam \u_dsi_csi2/rWcCnt_4_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_3_s0  (
+	.D(\u_dsi_csi2/n542_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [3])
+);
+defparam \u_dsi_csi2/rWcCnt_3_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_2_s0  (
+	.D(\u_dsi_csi2/n543_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [2])
+);
+defparam \u_dsi_csi2/rWcCnt_2_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_1_s0  (
+	.D(\u_dsi_csi2/n544_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [1])
+);
+defparam \u_dsi_csi2/rWcCnt_1_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCnt_0_s0  (
+	.D(\u_dsi_csi2/n545_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCnt [0])
+);
+defparam \u_dsi_csi2/rWcCnt_0_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCntP_2_s0  (
+	.D(\u_dsi_csi2/n628_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCntP [2])
+);
+defparam \u_dsi_csi2/rWcCntP_2_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCntP_1_s0  (
+	.D(\u_dsi_csi2/n629_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCntP [1])
+);
+defparam \u_dsi_csi2/rWcCntP_1_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rWcCntP_0_s0  (
+	.D(\u_dsi_csi2/n630_11 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rWcCntP [0])
+);
+defparam \u_dsi_csi2/rWcCntP_0_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rLpPeriod_s0  (
+	.D(\u_dsi_csi2/n655_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rLpPeriod )
+);
+defparam \u_dsi_csi2/rLpPeriod_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rEoLp_s0  (
+	.D(\u_dsi_csi2/n663_4 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rEoLp )
+);
+defparam \u_dsi_csi2/rEoLp_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPayloadBv_0_s0  (
+	.D(\u_dsi_csi2/n691_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rPayloadBv [0])
+);
+defparam \u_dsi_csi2/rPayloadBv_0_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPayloadBvReg_0_s0  (
+	.D(\u_dsi_csi2/rPayloadBv [0]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(O_PAYLOAD_DV[0])
+);
+defparam \u_dsi_csi2/rPayloadBvReg_0_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPldReg_7_s0  (
+	.D(\u_dsi_csi2/rPayload [7]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_PAYLOAD[7])
+);
+defparam \u_dsi_csi2/rPldReg_7_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPldReg_6_s0  (
+	.D(\u_dsi_csi2/rPayload [6]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_PAYLOAD[6])
+);
+defparam \u_dsi_csi2/rPldReg_6_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPldReg_5_s0  (
+	.D(\u_dsi_csi2/rPayload [5]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_PAYLOAD[5])
+);
+defparam \u_dsi_csi2/rPldReg_5_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPldReg_4_s0  (
+	.D(\u_dsi_csi2/rPayload [4]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_PAYLOAD[4])
+);
+defparam \u_dsi_csi2/rPldReg_4_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPldReg_3_s0  (
+	.D(\u_dsi_csi2/rPayload [3]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_PAYLOAD[3])
+);
+defparam \u_dsi_csi2/rPldReg_3_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPldReg_2_s0  (
+	.D(\u_dsi_csi2/rPayload [2]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_PAYLOAD[2])
+);
+defparam \u_dsi_csi2/rPldReg_2_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPldReg_1_s0  (
+	.D(\u_dsi_csi2/rPayload [1]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_PAYLOAD[1])
+);
+defparam \u_dsi_csi2/rPldReg_1_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rPldReg_0_s0  (
+	.D(\u_dsi_csi2/rPayload [0]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_PAYLOAD[0])
+);
+defparam \u_dsi_csi2/rPldReg_0_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rPayload_7_s0  (
+	.D(\u_dsi_csi2/n731_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rPayload_7_6 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rPayload [7])
+);
+defparam \u_dsi_csi2/rPayload_7_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rPayload_6_s0  (
+	.D(\u_dsi_csi2/n732_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rPayload_7_6 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rPayload [6])
+);
+defparam \u_dsi_csi2/rPayload_6_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rPayload_5_s0  (
+	.D(\u_dsi_csi2/n733_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rPayload_7_6 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rPayload [5])
+);
+defparam \u_dsi_csi2/rPayload_5_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rPayload_4_s0  (
+	.D(\u_dsi_csi2/n734_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rPayload_7_6 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rPayload [4])
+);
+defparam \u_dsi_csi2/rPayload_4_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rPayload_3_s0  (
+	.D(\u_dsi_csi2/n735_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rPayload_7_6 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rPayload [3])
+);
+defparam \u_dsi_csi2/rPayload_3_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rPayload_2_s0  (
+	.D(\u_dsi_csi2/n736_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rPayload_7_6 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rPayload [2])
+);
+defparam \u_dsi_csi2/rPayload_2_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rPayload_1_s0  (
+	.D(\u_dsi_csi2/n737_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rPayload_7_6 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rPayload [1])
+);
+defparam \u_dsi_csi2/rPayload_1_s0 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rPayload_0_s0  (
+	.D(\u_dsi_csi2/n738_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rPayload_7_6 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rPayload [0])
+);
+defparam \u_dsi_csi2/rPayload_0_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rSpEn_s0  (
+	.D(\u_dsi_csi2/n773_8 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rSpEn )
+);
+defparam \u_dsi_csi2/rSpEn_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rLpEn_s0  (
+	.D(\u_dsi_csi2/n785_8 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rLpEn )
+);
+defparam \u_dsi_csi2/rLpEn_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rLpAvEn_s0  (
+	.D(\u_dsi_csi2/n799_6 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(O_LP_AV_EN)
+);
+defparam \u_dsi_csi2/rLpAvEn_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHdrFlag_2_s0  (
+	.D(\u_dsi_csi2/rSpEn ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(O_SP_EN)
+);
+defparam \u_dsi_csi2/rHdrFlag_2_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHdrFlag_1_s0  (
+	.D(\u_dsi_csi2/rLpEn ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(O_LP_EN)
+);
+defparam \u_dsi_csi2/rHdrFlag_1_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_31_s0  (
+	.D(\u_dsi_csi2/rHeader [31]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_ECC[7])
+);
+defparam \u_dsi_csi2/rHeaderReg_31_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_30_s0  (
+	.D(\u_dsi_csi2/rHeader [30]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_ECC[6])
+);
+defparam \u_dsi_csi2/rHeaderReg_30_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_29_s0  (
+	.D(\u_dsi_csi2/rHeader [29]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_ECC[5])
+);
+defparam \u_dsi_csi2/rHeaderReg_29_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_28_s0  (
+	.D(\u_dsi_csi2/rHeader [28]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_ECC[4])
+);
+defparam \u_dsi_csi2/rHeaderReg_28_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_27_s0  (
+	.D(\u_dsi_csi2/rHeader [27]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_ECC[3])
+);
+defparam \u_dsi_csi2/rHeaderReg_27_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_26_s0  (
+	.D(\u_dsi_csi2/rHeader [26]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_ECC[2])
+);
+defparam \u_dsi_csi2/rHeaderReg_26_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_25_s0  (
+	.D(\u_dsi_csi2/rHeader [25]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_ECC[1])
+);
+defparam \u_dsi_csi2/rHeaderReg_25_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_24_s0  (
+	.D(\u_dsi_csi2/rHeader [24]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_ECC[0])
+);
+defparam \u_dsi_csi2/rHeaderReg_24_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_23_s0  (
+	.D(\u_dsi_csi2/rHeader [23]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[15])
+);
+defparam \u_dsi_csi2/rHeaderReg_23_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_22_s0  (
+	.D(\u_dsi_csi2/rHeader [22]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[14])
+);
+defparam \u_dsi_csi2/rHeaderReg_22_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_21_s0  (
+	.D(\u_dsi_csi2/rHeader [21]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[13])
+);
+defparam \u_dsi_csi2/rHeaderReg_21_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_20_s0  (
+	.D(\u_dsi_csi2/rHeader [20]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[12])
+);
+defparam \u_dsi_csi2/rHeaderReg_20_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_19_s0  (
+	.D(\u_dsi_csi2/rHeader [19]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[11])
+);
+defparam \u_dsi_csi2/rHeaderReg_19_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_18_s0  (
+	.D(\u_dsi_csi2/rHeader [18]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[10])
+);
+defparam \u_dsi_csi2/rHeaderReg_18_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_17_s0  (
+	.D(\u_dsi_csi2/rHeader [17]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[9])
+);
+defparam \u_dsi_csi2/rHeaderReg_17_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_16_s0  (
+	.D(\u_dsi_csi2/rHeader [16]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[8])
+);
+defparam \u_dsi_csi2/rHeaderReg_16_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_15_s0  (
+	.D(\u_dsi_csi2/rHeader [15]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[7])
+);
+defparam \u_dsi_csi2/rHeaderReg_15_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_14_s0  (
+	.D(\u_dsi_csi2/rHeader [14]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[6])
+);
+defparam \u_dsi_csi2/rHeaderReg_14_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_13_s0  (
+	.D(\u_dsi_csi2/rHeader [13]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[5])
+);
+defparam \u_dsi_csi2/rHeaderReg_13_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_12_s0  (
+	.D(\u_dsi_csi2/rHeader [12]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[4])
+);
+defparam \u_dsi_csi2/rHeaderReg_12_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_11_s0  (
+	.D(\u_dsi_csi2/rHeader [11]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[3])
+);
+defparam \u_dsi_csi2/rHeaderReg_11_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_10_s0  (
+	.D(\u_dsi_csi2/rHeader [10]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[2])
+);
+defparam \u_dsi_csi2/rHeaderReg_10_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_9_s0  (
+	.D(\u_dsi_csi2/rHeader [9]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[1])
+);
+defparam \u_dsi_csi2/rHeaderReg_9_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_8_s0  (
+	.D(\u_dsi_csi2/rHeader [8]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_WC[0])
+);
+defparam \u_dsi_csi2/rHeaderReg_8_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_7_s0  (
+	.D(\u_dsi_csi2/rHeader [7]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_VC[1])
+);
+defparam \u_dsi_csi2/rHeaderReg_7_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_6_s0  (
+	.D(\u_dsi_csi2/rHeader [6]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_VC[0])
+);
+defparam \u_dsi_csi2/rHeaderReg_6_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_5_s0  (
+	.D(\u_dsi_csi2/rHeader [5]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_DT[5])
+);
+defparam \u_dsi_csi2/rHeaderReg_5_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_4_s0  (
+	.D(\u_dsi_csi2/rHeader [4]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_DT[4])
+);
+defparam \u_dsi_csi2/rHeaderReg_4_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_3_s0  (
+	.D(\u_dsi_csi2/rHeader [3]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_DT[3])
+);
+defparam \u_dsi_csi2/rHeaderReg_3_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_2_s0  (
+	.D(\u_dsi_csi2/rHeader [2]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_DT[2])
+);
+defparam \u_dsi_csi2/rHeaderReg_2_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_1_s0  (
+	.D(\u_dsi_csi2/rHeader [1]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_DT[1])
+);
+defparam \u_dsi_csi2/rHeaderReg_1_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHeaderReg_0_s0  (
+	.D(\u_dsi_csi2/rHeader [0]),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(GND),
+	.Q(O_DT[0])
+);
+defparam \u_dsi_csi2/rHeaderReg_0_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rEccOk_s0  (
+	.D(\u_dsi_csi2/n993_3 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(O_ECC_OK)
+);
+defparam \u_dsi_csi2/rEccOk_s0 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHSel_2_s1  (
+	.D(\u_dsi_csi2/n435_8 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rHSel_2_10 ),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rHSel [2])
+);
+defparam \u_dsi_csi2/rHSel_2_s1 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHSel_1_s1  (
+	.D(\u_dsi_csi2/n436_7 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rHSel_2_10 ),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rHSel [1])
+);
+defparam \u_dsi_csi2/rHSel_1_s1 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rHSel_0_s1  (
+	.D(\u_dsi_csi2/n437_8 ),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rHSel_2_10 ),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rHSel [0])
+);
+defparam \u_dsi_csi2/rHSel_0_s1 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rSynced_s1  (
+	.D(I_READY),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/rSynced_8 ),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rSynced )
+);
+defparam \u_dsi_csi2/rSynced_s1 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rDSel_2_s4  (
+	.D(\u_dsi_csi2/n467_13 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rDSel [2])
+);
+defparam \u_dsi_csi2/rDSel_2_s4 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rDSel_1_s3  (
+	.D(\u_dsi_csi2/n468_9 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rDSel [1])
+);
+defparam \u_dsi_csi2/rDSel_1_s3 .INIT=1'b0;
+DFFCE \u_dsi_csi2/rDSel_0_s3  (
+	.D(\u_dsi_csi2/n469_9 ),
+	.CLK(I_BYTE_CLK),
+	.CE(VCC),
+	.CLEAR(\u_dsi_csi2/n478_6 ),
+	.Q(\u_dsi_csi2/rDSel [0])
+);
+defparam \u_dsi_csi2/rDSel_0_s3 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_31_s1  (
+	.D(\u_dsi_csi2/rData [7]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [31])
+);
+defparam \u_dsi_csi2/rHeader_31_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_30_s1  (
+	.D(\u_dsi_csi2/rData [6]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [30])
+);
+defparam \u_dsi_csi2/rHeader_30_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_29_s1  (
+	.D(\u_dsi_csi2/rData [5]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [29])
+);
+defparam \u_dsi_csi2/rHeader_29_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_28_s1  (
+	.D(\u_dsi_csi2/rData [4]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [28])
+);
+defparam \u_dsi_csi2/rHeader_28_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_27_s1  (
+	.D(\u_dsi_csi2/rData [3]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [27])
+);
+defparam \u_dsi_csi2/rHeader_27_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_26_s1  (
+	.D(\u_dsi_csi2/rData [2]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [26])
+);
+defparam \u_dsi_csi2/rHeader_26_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_25_s1  (
+	.D(\u_dsi_csi2/rData [1]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [25])
+);
+defparam \u_dsi_csi2/rHeader_25_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_24_s1  (
+	.D(\u_dsi_csi2/rData [0]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [24])
+);
+defparam \u_dsi_csi2/rHeader_24_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_23_s1  (
+	.D(\u_dsi_csi2/rDataReg [31]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [23])
+);
+defparam \u_dsi_csi2/rHeader_23_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_22_s1  (
+	.D(\u_dsi_csi2/rDataReg [30]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [22])
+);
+defparam \u_dsi_csi2/rHeader_22_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_21_s1  (
+	.D(\u_dsi_csi2/rDataReg [29]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [21])
+);
+defparam \u_dsi_csi2/rHeader_21_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_20_s1  (
+	.D(\u_dsi_csi2/rDataReg [28]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [20])
+);
+defparam \u_dsi_csi2/rHeader_20_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_19_s1  (
+	.D(\u_dsi_csi2/rDataReg [27]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [19])
+);
+defparam \u_dsi_csi2/rHeader_19_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_18_s1  (
+	.D(\u_dsi_csi2/rDataReg [26]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [18])
+);
+defparam \u_dsi_csi2/rHeader_18_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_17_s1  (
+	.D(\u_dsi_csi2/rDataReg [25]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [17])
+);
+defparam \u_dsi_csi2/rHeader_17_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_16_s1  (
+	.D(\u_dsi_csi2/rDataReg [24]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [16])
+);
+defparam \u_dsi_csi2/rHeader_16_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_15_s1  (
+	.D(\u_dsi_csi2/rDataReg [23]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [15])
+);
+defparam \u_dsi_csi2/rHeader_15_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_14_s1  (
+	.D(\u_dsi_csi2/rDataReg [22]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [14])
+);
+defparam \u_dsi_csi2/rHeader_14_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_13_s1  (
+	.D(\u_dsi_csi2/rDataReg [21]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [13])
+);
+defparam \u_dsi_csi2/rHeader_13_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_12_s1  (
+	.D(\u_dsi_csi2/rDataReg [20]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [12])
+);
+defparam \u_dsi_csi2/rHeader_12_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_11_s1  (
+	.D(\u_dsi_csi2/rDataReg [19]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [11])
+);
+defparam \u_dsi_csi2/rHeader_11_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_10_s1  (
+	.D(\u_dsi_csi2/rDataReg [18]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [10])
+);
+defparam \u_dsi_csi2/rHeader_10_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_9_s1  (
+	.D(\u_dsi_csi2/rDataReg [17]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [9])
+);
+defparam \u_dsi_csi2/rHeader_9_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_8_s1  (
+	.D(\u_dsi_csi2/rDataReg [16]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [8])
+);
+defparam \u_dsi_csi2/rHeader_8_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_7_s1  (
+	.D(\u_dsi_csi2/rDataReg [15]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [7])
+);
+defparam \u_dsi_csi2/rHeader_7_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_6_s1  (
+	.D(\u_dsi_csi2/rDataReg [14]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [6])
+);
+defparam \u_dsi_csi2/rHeader_6_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_5_s1  (
+	.D(\u_dsi_csi2/rDataReg [13]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [5])
+);
+defparam \u_dsi_csi2/rHeader_5_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_4_s1  (
+	.D(\u_dsi_csi2/rDataReg [12]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [4])
+);
+defparam \u_dsi_csi2/rHeader_4_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_3_s1  (
+	.D(\u_dsi_csi2/rDataReg [11]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [3])
+);
+defparam \u_dsi_csi2/rHeader_3_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_2_s1  (
+	.D(\u_dsi_csi2/rDataReg [10]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [2])
+);
+defparam \u_dsi_csi2/rHeader_2_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_1_s1  (
+	.D(\u_dsi_csi2/rDataReg [9]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [1])
+);
+defparam \u_dsi_csi2/rHeader_1_s1 .INIT=1'b0;
+DFFRE \u_dsi_csi2/rHeader_0_s1  (
+	.D(\u_dsi_csi2/rDataReg [8]),
+	.CLK(I_BYTE_CLK),
+	.CE(\u_dsi_csi2/n843_4 ),
+	.RESET(GND),
+	.Q(\u_dsi_csi2/rHeader [0])
+);
+defparam \u_dsi_csi2/rHeader_0_s1 .INIT=1'b0;
+ALU \u_dsi_csi2/n427_s1  (
+	.I0(\u_dsi_csi2/rWcCntP [0]),
+	.I1(\u_dsi_csi2/rDSel [0]),
+	.I3(VCC),
+	.CIN(GND),
+	.COUT(\u_dsi_csi2/n427_6 ),
+	.SUM(\u_dsi_csi2/n427_5 )
+);
+defparam \u_dsi_csi2/n427_s1 .ALU_MODE=0;
+ALU \u_dsi_csi2/n426_s1  (
+	.I0(\u_dsi_csi2/n426_16 ),
+	.I1(\u_dsi_csi2/rDSel [1]),
+	.I3(VCC),
+	.CIN(\u_dsi_csi2/n427_6 ),
+	.COUT(\u_dsi_csi2/n426_6 ),
+	.SUM(\u_dsi_csi2/n426_5 )
+);
+defparam \u_dsi_csi2/n426_s1 .ALU_MODE=0;
+ALU \u_dsi_csi2/n425_s1  (
+	.I0(\u_dsi_csi2/n425_11 ),
+	.I1(\u_dsi_csi2/rDSel [2]),
+	.I3(VCC),
+	.CIN(\u_dsi_csi2/n426_6 ),
+	.COUT(\u_dsi_csi2/n425_2_COUT ),
+	.SUM(\u_dsi_csi2/n425_5 )
+);
+defparam \u_dsi_csi2/n425_s1 .ALU_MODE=0;
+ALU \u_dsi_csi2/n791_s0  (
+	.I0(I_REF_DT[0]),
+	.I1(\u_dsi_csi2/rHeader [0]),
+	.I3(GND),
+	.CIN(GND),
+	.COUT(\u_dsi_csi2/n791_3 ),
+	.SUM(\u_dsi_csi2/n791_1_SUM )
+);
+defparam \u_dsi_csi2/n791_s0 .ALU_MODE=3;
+ALU \u_dsi_csi2/n792_s0  (
+	.I0(I_REF_DT[1]),
+	.I1(\u_dsi_csi2/rHeader [1]),
+	.I3(GND),
+	.CIN(\u_dsi_csi2/n791_3 ),
+	.COUT(\u_dsi_csi2/n792_3 ),
+	.SUM(\u_dsi_csi2/n792_1_SUM )
+);
+defparam \u_dsi_csi2/n792_s0 .ALU_MODE=3;
+ALU \u_dsi_csi2/n793_s0  (
+	.I0(I_REF_DT[2]),
+	.I1(\u_dsi_csi2/rHeader [2]),
+	.I3(GND),
+	.CIN(\u_dsi_csi2/n792_3 ),
+	.COUT(\u_dsi_csi2/n793_3 ),
+	.SUM(\u_dsi_csi2/n793_1_SUM )
+);
+defparam \u_dsi_csi2/n793_s0 .ALU_MODE=3;
+ALU \u_dsi_csi2/n794_s0  (
+	.I0(I_REF_DT[3]),
+	.I1(\u_dsi_csi2/rHeader [3]),
+	.I3(GND),
+	.CIN(\u_dsi_csi2/n793_3 ),
+	.COUT(\u_dsi_csi2/n794_3 ),
+	.SUM(\u_dsi_csi2/n794_1_SUM )
+);
+defparam \u_dsi_csi2/n794_s0 .ALU_MODE=3;
+ALU \u_dsi_csi2/n795_s0  (
+	.I0(I_REF_DT[4]),
+	.I1(\u_dsi_csi2/rHeader [4]),
+	.I3(GND),
+	.CIN(\u_dsi_csi2/n794_3 ),
+	.COUT(\u_dsi_csi2/n795_3 ),
+	.SUM(\u_dsi_csi2/n795_1_SUM )
+);
+defparam \u_dsi_csi2/n795_s0 .ALU_MODE=3;
+ALU \u_dsi_csi2/n796_s0  (
+	.I0(I_REF_DT[5]),
+	.I1(\u_dsi_csi2/rHeader [5]),
+	.I3(GND),
+	.CIN(\u_dsi_csi2/n795_3 ),
+	.COUT(\u_dsi_csi2/n796_3 ),
+	.SUM(\u_dsi_csi2/n796_1_SUM )
+);
+defparam \u_dsi_csi2/n796_s0 .ALU_MODE=3;
+MUX2_LUT5 \u_dsi_csi2/n731_s4  (
+	.I0(\u_dsi_csi2/n731_8 ),
+	.I1(\u_dsi_csi2/n715_4 ),
+	.S0(\u_dsi_csi2/n738_9 ),
+	.O(\u_dsi_csi2/n731_6 )
+);
+MUX2_LUT5 \u_dsi_csi2/n732_s4  (
+	.I0(\u_dsi_csi2/n732_8 ),
+	.I1(\u_dsi_csi2/n716_4 ),
+	.S0(\u_dsi_csi2/n738_9 ),
+	.O(\u_dsi_csi2/n732_6 )
+);
+MUX2_LUT5 \u_dsi_csi2/n733_s4  (
+	.I0(\u_dsi_csi2/n733_8 ),
+	.I1(\u_dsi_csi2/n717_4 ),
+	.S0(\u_dsi_csi2/n738_9 ),
+	.O(\u_dsi_csi2/n733_6 )
+);
+MUX2_LUT5 \u_dsi_csi2/n734_s4  (
+	.I0(\u_dsi_csi2/n734_8 ),
+	.I1(\u_dsi_csi2/n718_4 ),
+	.S0(\u_dsi_csi2/n738_9 ),
+	.O(\u_dsi_csi2/n734_6 )
+);
+MUX2_LUT5 \u_dsi_csi2/n735_s4  (
+	.I0(\u_dsi_csi2/n735_8 ),
+	.I1(\u_dsi_csi2/n719_4 ),
+	.S0(\u_dsi_csi2/n738_9 ),
+	.O(\u_dsi_csi2/n735_6 )
+);
+MUX2_LUT5 \u_dsi_csi2/n736_s4  (
+	.I0(\u_dsi_csi2/n736_8 ),
+	.I1(\u_dsi_csi2/n720_4 ),
+	.S0(\u_dsi_csi2/n738_9 ),
+	.O(\u_dsi_csi2/n736_6 )
+);
+MUX2_LUT5 \u_dsi_csi2/n737_s4  (
+	.I0(\u_dsi_csi2/n737_8 ),
+	.I1(\u_dsi_csi2/n721_4 ),
+	.S0(\u_dsi_csi2/n738_9 ),
+	.O(\u_dsi_csi2/n737_6 )
+);
+MUX2_LUT5 \u_dsi_csi2/n738_s4  (
+	.I0(\u_dsi_csi2/n738_8 ),
+	.I1(\u_dsi_csi2/n722_4 ),
+	.S0(\u_dsi_csi2/n738_9 ),
+	.O(\u_dsi_csi2/n738_6 )
+);
+INV \u_dsi_csi2/n478_s2  (
+	.I(I_RSTN),
+	.O(\u_dsi_csi2/n478_6 )
+);
+INV \u_dsi_csi2/n31_s2  (
+	.I(\u_dsi_csi2/rSynced ),
+	.O(\u_dsi_csi2/n31_5 )
+);
+endmodule

@@ -1,0 +1,9 @@
+基于CPHY硬核的索尼IMX586 1920x1080@60 HDMI屏显示工程
+
+内容：
+      实现将IMX586 采集的彩色图像数据缓存进DDR3，并经过手动白平衡后以1920*1080@60
+的视频时序输出到HDMI屏幕显示。其中，DDR3工作频率为600MHz，IMX586 输入的图像数据
+大小为3840*2160，帧率为30帧，数据格式为RAW10。
+编译工具配置：
+       在云源菜单栏中找到“Project”，点击“Project”下的“Configuration”，将“Synthesize”
+选项的“Verilog Language”改为“Verilog 2017”。

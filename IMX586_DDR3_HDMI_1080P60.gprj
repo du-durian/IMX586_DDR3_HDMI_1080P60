@@ -1,0 +1,75 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AT-15B" pn="GW5AT-LV15MG132C1/I0">gw5at15b-001</Device>
+    <FileList>
+        <File path="src/CMOS_IMX586_FrameCapture.v" type="file.verilog" enable="1"/>
+        <File path="src/CPHYrx/CPHYrx.v" type="file.verilog" enable="1"/>
+        <File path="src/CPHYrx/MIPI_PHY_CTRL.v" type="file.verilog" enable="1"/>
+        <File path="src/CPHYrx/cphy_trio_align_dw.v" type="file.verilog" enable="1"/>
+        <File path="src/CPHYrx/csi_rx_cphy.v" type="file.verilog" enable="1"/>
+        <File path="src/DDR3/DDR3ControllerGWTopLite.v" type="file.verilog" enable="1"/>
+        <File path="src/DDR3/DDR_Tick_Generator.v" type="file.verilog" enable="1"/>
+        <File path="src/DDR3/R0_FIFO_128/R0_FIFO_128.v" type="file.verilog" enable="1"/>
+        <File path="src/DDR3/Reset.v" type="file.verilog" enable="1"/>
+        <File path="src/DDR3/W0_FIFO_128/W0_FIFO_128.v" type="file.verilog" enable="1"/>
+        <File path="src/FIFO_DATA_RX/FIFO_DATA_RX.v" type="file.verilog" enable="1"/>
+        <File path="src/FIFO_DATA_RX/fifo_480_30/fifo_384_24.v" type="file.verilog" enable="1"/>
+        <File path="src/FIFO_DATA_RX/fifo_480_30/fifo_480_30.v" type="file.verilog" enable="1"/>
+        <File path="src/FPGA_G60_Top.v" type="file.verilog" enable="1"/>
+        <File path="src/MACROS.vh" type="file.verilog" enable="1"/>
+        <File path="src/MIPI/mipi_byte_to_pixel_converter/mipi_byte_to_pixel_converter.v" type="file.verilog" enable="1"/>
+        <File path="src/MIPI/mipi_dsi_csi2_rx/mipi_dsi_csi2_rx.v" type="file.verilog" enable="1"/>
+        <File path="src/MIPI/mipi_rx_advance/mipi_rx_advance_invert.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_25_27/PLL_25_27.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_25_27/PLL_25_27_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_25_300_75/PLL_25_300_75.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_25_300_75/PLL_25_300_75_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_25_48/PLL_25_48.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_25_48/PLL_25_48_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_27_74_371/PLL_27_371_74.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_27_74_371/PLL_27_371_74_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_27_74_371/PLL_27_742_148.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_27_74_371/PLL_27_742_148_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_27_74_371/PLL_27_74_371.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_27_74_371/PLL_27_74_371_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_wCPHYclkx5/PLL_wCPHYclkx10.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_wCPHYclkx5/PLL_wCPHYclkx10_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_wCPHYclkx5/PLL_wCPHYclkx5.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_wCPHYclkx5/PLL_wCPHYclkx5_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_CPHY_700sps/PLL_CPHY_700sps.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_CPHY_700sps/PLL_CPHY_700sps_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_CPHY_700sps/gowin_pll_CPHY_700sps.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_CPHY_700sps/gowin_pll_CPHY_700sps_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_OV_24M/PLL_OV_24M.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_OV_24M/PLL_OV_24M_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_OV_24M/gowin_pll_OV_24M.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_OV_24M/gowin_pll_OV_24M_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/axi/axi4_ctrl.v" type="file.verilog" enable="1"/>
+        <File path="src/common/ASYNC_FIFO_D16W33_STD/ASYNC_FIFO_D16W33_STD.v" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_ip/rgb2dvi.v" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_ip/tmds_channel.v" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_ip/tmds_enc_rtl.v" type="file.verilog" enable="1"/>
+        <File path="src/iic_config/I2C_IMX586_Config.v" type="file.verilog" enable="1"/>
+        <File path="src/iic_config/I2C_SC130GS_1280750_1Lane_Config.v" type="file.verilog" enable="1"/>
+        <File path="src/iic_config/i2c_timing_ctrl_reg16_dat8_wronly.v" type="file.verilog" enable="1"/>
+        <File path="src/isp/FrameBoundCrop.v" type="file.verilog" enable="1"/>
+        <File path="src/isp/Sensor_Image_XYCrop.v" type="file.verilog" enable="1"/>
+        <File path="src/isp/bayer2rgb/Line_Shift_RAM_8Bit.v" type="file.verilog" enable="1"/>
+        <File path="src/isp/bayer2rgb/VIP_Matrix_Generate_3X3_8Bit.v" type="file.verilog" enable="1"/>
+        <File path="src/isp/bayer2rgb/VIP_RAW8_RGB888.v" type="file.verilog" enable="1"/>
+        <File path="src/lcd_display/lcd_driver.v" type="file.verilog" enable="1"/>
+        <File path="src/lcd_display/lcd_para.v" type="file.verilog" enable="1"/>
+        <File path="src/others/PLL_25_100_400_400P_100S_400S/PLL_25_100_400_400P_100S_400S_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/others/PLL_25_400_400S_100/PLL_25_400_400S_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/others/PLL_25_50_50S_12/PLL_25_50_50S_12_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/others/PLL_25_800_100/PLL_25_800_100_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/others/PLL_25_800_200/PLL_25_800_200_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/pll_init.v" type="file.verilog" enable="1"/>
+        <File path="src/IMX586_DDR3_HDMI_1080P60.cst" type="file.cst" enable="1"/>
+        <File path="src/IMX586_DDR3_HDMI_1080P60.sdc" type="file.sdc" enable="1"/>
+        <File path="src/IMX586_DDR3_HDMI_1080P60.rao" type="file.gao" enable="0"/>
+    </FileList>
+</Project>

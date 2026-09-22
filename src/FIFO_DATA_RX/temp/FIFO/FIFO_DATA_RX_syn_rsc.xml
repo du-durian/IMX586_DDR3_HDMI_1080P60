@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="FIFO_DATA_RX" Register="30" Alu="5" Lut="845" Bsram="14" T_Register="30(30)" T_Alu="5(5)" T_Lut="845(845)" T_Bsram="14(14)"/>
