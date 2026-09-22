@@ -7,7 +7,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module FPGA_G60_Top(
-    input           clk_25m_i,
+    input           clk_50m_i,
 
     // Frame activity indicator
     output  wire    led,
@@ -40,10 +40,10 @@ module FPGA_G60_Top(
     wire w_sys_rstn;
     wire w_sys_lock;
 
-    PLL_25_48 pll_system (
+    PLL_50_48 pll_system (
         .lock       (w_sys_lock),
         .clkout0    (w_sys_clk),
-        .clkin      (clk_25m_i)
+        .clkin      (clk_50m_i)
     );
 
     Reset rst_sys_clk (

@@ -35,6 +35,8 @@
         <File path="src/PLL/PLL_27_74_371/PLL_27_742_148_mod.v" type="file.verilog" enable="1"/>
         <File path="src/PLL/PLL_27_74_371/PLL_27_74_371.v" type="file.verilog" enable="1"/>
         <File path="src/PLL/PLL_27_74_371/PLL_27_74_371_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_50_48/PLL_50_48.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/PLL_50_48/PLL_50_48_mod.v" type="file.verilog" enable="1"/>
         <File path="src/PLL/PLL_wCPHYclkx5/PLL_wCPHYclkx10.v" type="file.verilog" enable="1"/>
         <File path="src/PLL/PLL_wCPHYclkx5/PLL_wCPHYclkx10_mod.v" type="file.verilog" enable="1"/>
         <File path="src/PLL/PLL_wCPHYclkx5/PLL_wCPHYclkx5.v" type="file.verilog" enable="1"/>
@@ -43,6 +45,10 @@
         <File path="src/PLL/gowin_pll_CPHY_700sps/PLL_CPHY_700sps_mod.v" type="file.verilog" enable="1"/>
         <File path="src/PLL/gowin_pll_CPHY_700sps/gowin_pll_CPHY_700sps.v" type="file.verilog" enable="1"/>
         <File path="src/PLL/gowin_pll_CPHY_700sps/gowin_pll_CPHY_700sps_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_OV_24M/PLL_OV_24M.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_OV_24M/PLL_OV_24M_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_OV_24M/gowin_pll_OV_24M.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/gowin_pll_OV_24M/gowin_pll_OV_24M_mod.v" type="file.verilog" enable="1"/>
         <File path="src/axi/axi4_ctrl.v" type="file.verilog" enable="1"/>
         <File path="src/common/ASYNC_FIFO_D16W33_STD/ASYNC_FIFO_D16W33_STD.v" type="file.verilog" enable="1"/>
         <File path="src/hdmi_ip/rgb2dvi.v" type="file.verilog" enable="1"/>
