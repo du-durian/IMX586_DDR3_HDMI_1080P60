@@ -7,7 +7,7 @@
 //Device Version: B
 //Created Time: Wed 10 02 17:10:30 2024
 
-IO_LOC "ddr3_dm_o[1]" M3;
+/*IO_LOC "ddr3_dm_o[1]" M3;
 IO_PORT "ddr3_dm_o[1]" IO_TYPE=SSTL15_I PULL_MODE=NONE DRIVE=8 BANK_VCCIO=1.5;
 IO_LOC "ddr3_dm_o[0]" R6;
 IO_PORT "ddr3_dm_o[0]" IO_TYPE=SSTL15_I PULL_MODE=NONE DRIVE=8 BANK_VCCIO=1.5;
@@ -104,7 +104,7 @@ IO_LOC "ddr3_a_io[10]" L7;
 IO_PORT "ddr3_a_io[10]" IO_TYPE=SSTL15_I PULL_MODE=NONE DRIVE=8 BANK_VCCIO=1.5;
 IO_LOC "ddr3_a_io[0]" R11;
 IO_PORT "ddr3_a_io[0]" IO_TYPE=SSTL15_I PULL_MODE=NONE DRIVE=8 BANK_VCCIO=1.5;
-INS_LOC "u_ddr3_top/ddr3_io_top_gw.ddrdll_test" DDRDLLM_BL;
+INS_LOC "u_ddr3_top/ddr3_io_top_gw.ddrdll_test" DDRDLLM_BL;*/
 INS_LOC "pll_ddr/PLLA_inst" PLL_B[0];
 //INS_LOC "u_PLL_27_742_148/PLLA_inst" PLL_R[0];
 
@@ -112,14 +112,14 @@ INS_LOC "pll_ddr/PLLA_inst" PLL_B[0];
 ///////////////////////////////////////////////////////////////////////////////
 
 
-IO_LOC "hdmi_txd_p_o[2]" G14;
+/*IO_LOC "hdmi_txd_p_o[2]" G14;
 IO_PORT "hdmi_txd_p_o[2]" IO_TYPE=LVPECL33E PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 IO_LOC "hdmi_txd_p_o[1]" J15;
 IO_PORT "hdmi_txd_p_o[1]" IO_TYPE=LVPECL33E PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 IO_LOC "hdmi_txd_p_o[0]" K13;
 IO_PORT "hdmi_txd_p_o[0]" IO_TYPE=LVPECL33E PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 IO_LOC "hdmi_txc_p_o" M15;
-IO_PORT "hdmi_txc_p_o" IO_TYPE=LVPECL33E PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "hdmi_txc_p_o" IO_TYPE=LVPECL33E PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;*/
 IO_LOC "led" H13;
 IO_PORT "led" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 
