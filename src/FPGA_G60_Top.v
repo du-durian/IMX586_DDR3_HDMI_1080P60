@@ -59,11 +59,17 @@ module FPGA_G60_Top(
     ////////////////////////////////////////////////////////////////////////
     assign OV_RST_N = 1'b1;
 
-    PLL_OV_24M u_PLL_OV_24M (
-        .reset      (w_sys_rst),
-        .clkin      (w_sys_clk),
-        .clkout0    (OV_MCLK)
-    );
+    // Derive the sensor 24 MHz MCLK from the 48 MHz system clock.
+    // This avoids consuming a third PLL on GW5AT-15.
+    reg r_ov_mclk;
+    always @(posedge w_sys_clk) begin
+        if (w_sys_rst)
+            r_ov_mclk <= 1'b0;
+        else
+            r_ov_mclk <= ~r_ov_mclk;
+    end
+
+    assign OV_MCLK = r_ov_mclk;
 
     wire        i2c_sclk;
     wire        i2c_sdat;
