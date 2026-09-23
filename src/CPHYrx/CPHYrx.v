@@ -39,6 +39,7 @@ module CPHYrx
 
 ,output wire test_io
 ,output wire test_io2
+,output wire [146:0] DBG_CPHY
 );
 
 
@@ -71,6 +72,7 @@ wire                        clk_test                            ;
 wire        [7:0]           mdrp_rdata                          ;
 wire        [2:0]           test_port                           ;
 wire                        tx_clk_1x                           ;
+wire [126:0]                wDbgCsi                             ;
 
 
 MIPI_PHY_CTRL #
@@ -521,6 +523,7 @@ csi_rx_cphy u_csi_rx_cphy
 ,.RO_FVSCNT         (RO_CPHY_CSI_FVSCNT     )
 ,.RO_FVECNT         (RO_CPHY_CSI_FVECNT     )
 ,.test_io           (test_io                )
+,.DBG_CSI           (wDbgCsi                )
 );
 
 
@@ -540,6 +543,17 @@ wire [32-1:0] wHsWord_0     = { rHsRxD0[36:21], rHsRxD0[15:0]};
 
 assign test_io2 = ^wHsWord_2 | ^ wHsWord_1 | ^wHsWord_0;
 
+// GAO debug packing, all fields are sampled in the I_CPHYCLK domain.
+// [126:0]   : CSI parser debug word, see csi_rx_cphy DBG_CSI packing
+// [127]     : C-PHY digital reset released
+// [129:128] : trio-align valid mask
+// [130]     : trio-align error
+// [131]     : trio-align FIFO/count error
+// [134:132] : raw per-trio HSRX valid mask
+// [140:135] : raw per-trio word-align flags
+// [146:141] : raw per-trio de-map-invalid flags
+assign DBG_CPHY = {wHsDMI, wHsWA, rHsRxVld, rCntErr, rAlgErr,
+                   rAlgWV, wDRstN, wDbgCsi};
 
 endmodule
 

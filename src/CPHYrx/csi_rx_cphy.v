@@ -26,6 +26,7 @@ module csi_rx_cphy #
 ,   output reg  [15:0]  RO_FVECNT
 
 ,   output wire         test_io
+,   output wire [126:0]  DBG_CSI
 );
 
 //====================================================== sig_def
@@ -67,6 +68,9 @@ enum                                {
 
 reg     [5:0]   rDT                 ='d0            ;
 reg     [15:0]  rWC                 ='d0            ;
+reg     [95:0]  rHdrWord            ='d0            ;
+reg     [5:0]   rHdrDT              ='d0            ;
+reg     [15:0]  rHdrWC              ='d0            ;
 reg     [15:0]  rWcCnt              ='d0            ;
 reg     [15:0]  rPHCRC              ='d0            ;
                     
@@ -118,7 +122,7 @@ always@(posedge CPHYCLK or negedge RESET_N) begin
     end
     else if(wDRstN_pos) begin
         state0 <= S0IDLE;
-        rFirstFlag <= 'd0;//'d1;//
+        rFirstFlag <= 1'b1;
         rDT    <= 'd0;
         rWC    <= 'd0;
         rPHCRC <= 'd0;
@@ -127,17 +131,25 @@ always@(posedge CPHYCLK or negedge RESET_N) begin
         case(state0)
             S0IDLE: begin
                 state0 <= S0PH0;
-                rFirstFlag <= 'd0;//'d1;//
-                
+
                 rDT    <= 'd0;
                 rWC    <= 'd0;
                 rPHCRC <= 'd0;
             end
             S0PH0: begin
                 if(rFirstFlag) begin
-                    if(wAlgWvPos && (rAlgTrio2[13:8]==6'h00)) begin
+                    // The C-PHY receiver can begin observing a frame after its
+                    // Frame Start short packet. Accept the first valid RAW10
+                    // long packet as a synchronization point as well.
+                    if(wAlgWvPos && (rAlgTrio2[13:8] == 6'h00)) begin
                         state0 <= S0FVS;
-                        rFirstFlag <= 1'd0;
+                        rFirstFlag <= 1'b0;
+                    end
+                    else if(wAlgWvPos && (rAlgTrio2[13:8] == DT_RAW10)) begin
+                        state0 <= S0PH1;
+                        rFirstFlag <= 1'b0;
+                        rDT <= rAlgTrio2[13:8];
+                        rWC <= rAlgTrio2[31:16];
                     end
                 end
                 else begin
@@ -191,12 +203,26 @@ always@(posedge CPHYCLK or negedge RESET_N) begin
             
             
             S0ERR: begin
-              state0 <= S0IDLE;//add by weiqiang 
+              state0 <= S0IDLE;
+              rFirstFlag <= 1'b1;
             end
             default: begin
                 state0 <= S0IDLE;
             end
         endcase
+    end
+//!_____________________________________________________________________________
+    // Retain the exact parser input at every header-decision strobe for GAO.
+    // These values describe the same pre-clock word used by S0PH0.
+    if(!RESET_N) begin
+        rHdrWord <= 'd0;
+        rHdrDT   <= 'd0;
+        rHdrWC   <= 'd0;
+    end
+    else if(wAlgWvPos) begin
+        rHdrWord <= wAlgData;
+        rHdrDT   <= rAlgTrio2[13:8];
+        rHdrWC   <= rAlgTrio2[31:16];
     end
 //!_____________________________________________________________________________
     if(!RESET_N)
@@ -341,7 +367,7 @@ always@(posedge CPHYCLK or negedge RESET_N) begin
     if(!RESET_N) RO_HCNTERR  <= 'd0; else RO_HCNTERR  <= (rEol && (rHCnt+1'd1!=RW_D96PERIOD))?  1'd1:RO_HCNTERR  ;
     if(!RESET_N) RO_VCNTERR  <= 'd0; else RO_VCNTERR  <= (rFvE && (rVCnt!=RW_VRES))?            1'd1:RO_VCNTERR  ;
     if(!RESET_N) RO_FVSCNT   <= 'd0; else RO_FVSCNT   <= rFvS? RO_FVSCNT+1'd1:RO_FVSCNT;
-    if(!RESET_N) RO_FVECNT   <= 'd0; else RO_FVECNT   <= rFvS? RO_FVECNT+1'd1:RO_FVECNT;
+    if(!RESET_N) RO_FVECNT   <= 'd0; else RO_FVECNT   <= rFvE? RO_FVECNT+1'd1:RO_FVECNT;
 end
 
 
@@ -401,5 +427,26 @@ end
 
 assign test_io = ^ALGWV_cnt;
 
+// GAO debug packing, all synchronous to CPHYCLK.
+// [95:0]   : retained parser input at the most recent header strobe
+// [111:96]  : retained Word Count from the most recent header strobe
+// [117:112] : retained Data Type from the most recent header strobe
+// [118]     : parser aligned-data valid
+// [119]     : aligned-data valid rising edge (current header strobe)
+// [120]     : first-frame acquisition flag
+// [122:121] : reserved for future debug use
+// [126:123] : portable parser state code
+wire [3:0] wDbgState = (state0 == S0IDLE)    ? 4'd0 :
+                        (state0 == S0PH0)     ? 4'd1 :
+                        (state0 == S0PH1)     ? 4'd2 :
+                        (state0 == S0PH2)     ? 4'd3 :
+                        (state0 == S0FVS)     ? 4'd4 :
+                        (state0 == S0FVE)     ? 4'd5 :
+                        (state0 == S0PAYLOAD) ? 4'd6 :
+                        (state0 == S0WAITEND) ? 4'd7 :
+                        (state0 == S0ERR)     ? 4'd8 : 4'hF;
+
+assign DBG_CSI = {wDbgState, 2'b00, rFirstFlag, wAlgWvPos,
+                  rAlgWv, rHdrDT, rHdrWC, rHdrWord};
 
 endmodule
