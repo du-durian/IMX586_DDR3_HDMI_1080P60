@@ -170,9 +170,17 @@ module FPGA_G60_Top(
     wire [15:0] RO_CPHY_CSI_FVSCNT    /* synthesis syn_keep=1 */;
     wire [15:0] RO_CPHY_CSI_FVECNT    /* synthesis syn_keep=1 */;
 
+    // FVS-boundary inferred completion. These signals are deliberately kept
+    // separate from the real CSI-2 FVE decoder outputs above.
+    wire        RO_CPHY_CSI_FVS_FRAME_VALID /* synthesis syn_keep=1 */;
+    wire [16:0] RO_CPHY_CSI_FVS_EOLCNT      /* synthesis syn_keep=1 */;
+    wire [15:0] RO_CPHY_CSI_FVS_FVECNT      /* synthesis syn_keep=1 */;
+    wire        RO_CPHY_CSI_FVS_VCNTERR     /* synthesis syn_keep=1 */;
+
     // Primary GAO probes: all are synchronous to wCPHYclk.
     wire        wCPHYrxFvs       /* synthesis syn_keep=1 */;
     wire        wCPHYrxFve       /* synthesis syn_keep=1 */;
+    wire        wCPHYrxFveInferred /* synthesis syn_keep=1 */;
     wire [3:0]  wCPHYrxDe        /* synthesis syn_keep=1 */;
     wire        wCPHYrxEol       /* synthesis syn_keep=1 */;
     wire [95:0] wCPHYrxData      /* synthesis syn_keep=1 */;
@@ -231,6 +239,11 @@ module FPGA_G60_Top(
         .RO_CPHY_CSI_VCNTERR   (RO_CPHY_CSI_VCNTERR),
         .RO_CPHY_CSI_FVSCNT    (RO_CPHY_CSI_FVSCNT),
         .RO_CPHY_CSI_FVECNT    (RO_CPHY_CSI_FVECNT),
+        .O_FVE_INFERRED        (wCPHYrxFveInferred),
+        .RO_CPHY_CSI_FVS_FRAME_VALID(RO_CPHY_CSI_FVS_FRAME_VALID),
+        .RO_CPHY_CSI_FVS_EOLCNT(RO_CPHY_CSI_FVS_EOLCNT),
+        .RO_CPHY_CSI_FVS_FVECNT(RO_CPHY_CSI_FVS_FVECNT),
+        .RO_CPHY_CSI_FVS_VCNTERR(RO_CPHY_CSI_FVS_VCNTERR),
 
         .test_io               (cphy_test_io),
         .test_io2              (cphy_test_io2),

@@ -34,8 +34,16 @@ module CPHYrx
 ,output                     RO_CPHY_CSI_WCERR       // 
 ,output                     RO_CPHY_CSI_HCNTERR     // 
 ,output                     RO_CPHY_CSI_VCNTERR     // 
-,output     [15:0]          RO_CPHY_CSI_FVSCNT      // 
-,output     [15:0]          RO_CPHY_CSI_FVECNT      // 
+,output     [15:0]          RO_CPHY_CSI_FVSCNT      //
+,output     [15:0]          RO_CPHY_CSI_FVECNT      //
+
+// FVS-to-FVS inferred frame completion diagnostics. These remain distinct
+// from the received CSI-2 FVE packet outputs above.
+,output                     O_FVE_INFERRED
+,output                     RO_CPHY_CSI_FVS_FRAME_VALID
+,output     [16:0]          RO_CPHY_CSI_FVS_EOLCNT
+,output     [15:0]          RO_CPHY_CSI_FVS_FVECNT
+,output                     RO_CPHY_CSI_FVS_VCNTERR
 
 ,output wire test_io
 ,output wire test_io2
@@ -522,6 +530,11 @@ csi_rx_cphy u_csi_rx_cphy
 ,.RO_VCNTERR        (RO_CPHY_CSI_VCNTERR    )
 ,.RO_FVSCNT         (RO_CPHY_CSI_FVSCNT     )
 ,.RO_FVECNT         (RO_CPHY_CSI_FVECNT     )
+,.O_FVE_INFERRED    (O_FVE_INFERRED          )
+,.RO_FVS_FRAME_VALID(RO_CPHY_CSI_FVS_FRAME_VALID)
+,.RO_FVS_EOLCNT     (RO_CPHY_CSI_FVS_EOLCNT  )
+,.RO_FVS_FVECNT     (RO_CPHY_CSI_FVS_FVECNT  )
+,.RO_FVS_VCNTERR    (RO_CPHY_CSI_FVS_VCNTERR )
 ,.test_io           (test_io                )
 ,.DBG_CSI           (wDbgCsi                )
 );

@@ -25,6 +25,14 @@ module csi_rx_cphy #
 ,   output reg  [15:0]  RO_FVSCNT
 ,   output reg  [15:0]  RO_FVECNT
 
+// FVS-to-FVS inferred frame completion. These do not represent a received
+// CSI-2 FVE short packet; O_FVE and RO_FVECNT retain that original meaning.
+,   output reg          O_FVE_INFERRED
+,   output reg          RO_FVS_FRAME_VALID
+,   output reg  [16:0]  RO_FVS_EOLCNT
+,   output reg  [15:0]  RO_FVS_FVECNT
+,   output reg          RO_FVS_VCNTERR
+
 ,   output wire         test_io
 ,   output wire [126:0]  DBG_CSI
 );
@@ -86,7 +94,13 @@ reg             rEol                ='d0            ;
 reg     [95:0]  rData               ='d0            ;
 reg     [15:0]  rHCnt               ='d0            ;
 reg     [15:0]  rVCnt               ='d0            ;
-                    
+
+// Counts image-line EOL pulses between two received FVS packets. The extra
+// bit prevents a bad stream from wrapping to an apparently valid VRES value.
+reg     [16:0]  rFvsFrameEolCnt      ='d0            ;
+reg             rFvsSeen             ='d0            ;
+wire    [16:0]  wVresExt              = {1'b0, RW_VRES};
+
 reg     [15:0]  rCrcFromData        ='d0            ;   //LSB, MSB  same as cphy out
 reg             rCrcFromDataErr     ='d0            ;
 
@@ -357,6 +371,44 @@ always@(posedge CPHYCLK or negedge RESET_N) begin
 end
 
 
+//============================================================= FVS-boundary frame verifier
+// A new received FVS closes the preceding FVS-delimited frame. This is used
+// only when a sensor mode does not supply a usable CSI-2 FVE short packet.
+always@(posedge CPHYCLK or negedge RESET_N) begin
+    if(!RESET_N) begin
+        rFvsFrameEolCnt   <= 17'd0;
+        rFvsSeen          <= 1'b0;
+        O_FVE_INFERRED    <= 1'b0;
+        RO_FVS_FRAME_VALID<= 1'b0;
+        RO_FVS_EOLCNT     <= 17'd0;
+        RO_FVS_FVECNT     <= 16'd0;
+        RO_FVS_VCNTERR    <= 1'b0;
+    end
+    else begin
+        // wDRstN_pos is a normal C-PHY burst-level reset/release event. Do
+        // not discard FVS-to-FVS history here, or a frame can never close.
+        O_FVE_INFERRED <= 1'b0;
+
+        if(rFvS) begin
+            if(rFvsSeen) begin
+                O_FVE_INFERRED <= 1'b1;
+                RO_FVS_EOLCNT  <= rFvsFrameEolCnt;
+                if(RO_FVS_FVECNT != 16'hFFFF)
+                    RO_FVS_FVECNT <= RO_FVS_FVECNT + 1'b1;
+                if(rFvsFrameEolCnt != wVresExt)
+                    RO_FVS_VCNTERR <= 1'b1;
+            end
+
+            rFvsFrameEolCnt    <= 17'd0;
+            rFvsSeen           <= 1'b1;
+            RO_FVS_FRAME_VALID <= 1'b1;
+        end
+        else if(rFvsSeen && rEol) begin
+            if(!(&rFvsFrameEolCnt))
+                rFvsFrameEolCnt <= rFvsFrameEolCnt + 1'b1;
+        end
+    end
+end
 
 
 //============================================================= Error detect
