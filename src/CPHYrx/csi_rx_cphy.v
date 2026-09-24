@@ -159,6 +159,12 @@ always@(posedge CPHYCLK or negedge RESET_N) begin
                         state0 <= S0FVS;
                         rFirstFlag <= 1'b0;
                     end
+                    //▼▼▼▼▼▼▼▼▼ 新增 ▼▼▼▼▼▼▼▼▼
+                    else if(wAlgWvPos && (rAlgTrio2[13:8] == 6'h01)) begin
+                        state0 <= S0FVE;
+                        rFirstFlag <= 1'b0;
+                    end
+                    //▲▲▲▲▲▲▲▲▲ 新增 ▲▲▲▲▲▲▲▲▲
                     else if(wAlgWvPos && (rAlgTrio2[13:8] == DT_RAW10)) begin
                         state0 <= S0PH1;
                         rFirstFlag <= 1'b0;
@@ -298,7 +304,7 @@ always@(posedge CPHYCLK or negedge RESET_N) begin
     if(!RESET_N)
         rVCnt <= 'd0;
     else
-        if(rFvS | rFirstFlag)
+        if(rFvS)
             rVCnt <= 'd0;
         else
             if(rEol)
